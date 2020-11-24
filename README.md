@@ -7,3 +7,6 @@ Prueba los siguientes links:
   
   promise JS
     https://arce-juan.github.io/JavaScript/Promise%20JS/index.html
+
+  Codificacion en Linea en comunicaciones
+    https://arce-juan.github.io/JavaScript/Soft-ModulacionDigital/CodificacionDeLinea.html
