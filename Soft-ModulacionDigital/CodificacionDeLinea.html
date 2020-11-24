@@ -3,10 +3,15 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>CodePen Demo</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <meta name="robots" content="noindex">
+
+  <title>Codificacion En Linea</title>
+  <script src="jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script language="JavaScript" src="bootstrap/js/bootstrap.min.js"></script>
+  <script language="JavaScript" src="js/codigo.js"></script>
+
 
   <style class="INLINE_PEN_STYLESHEET_ID">
     canvas {
@@ -21,8 +26,51 @@
 </head>
 
 <body onload="drawPlanCartesiano();" style="color:#808080; background:#696969">
+  <nav class="navbar navbar-expand-sm navbar-light bg-success">
+    <a class="navbar-brand" href="#">Codificanción en Linea</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+      aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="">
+            <i class="fa fa-home"></i> Inicio<span class="sr-only"></span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#" onclick="lanzarModalAlumno();">
+            <i class="fa fa-user"></i> Alumno <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="container" style="max-width: 100%; background-color:#F8F9F9">
+          <div class="form-row justify-content-center" style="margin-bottom: 7px;">
+            <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">Cadena a Enviar: </label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control form-control-sm solo-numero-binario" id="idInputCadenaEnviada"
+                name="nInputCadenaEnviada" placeholder="Ej.: 0011010" maxlength="7">
+            </div>
+            <div class="col-sm-1">
+              <i class="fa fa-pencil" aria-hidden="true" onclick="GenerarBinarioAutomaticamente();"
+                title="Generar un binario aleatorio"></i>
+            </div>
+            <div class="col-sm-1">
+              <button type="button" id="idButtonAvanzar" class="btn btn-primary btn-sm"
+                onclick="AccionCodificar();">&gt;&gt;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  
   <label>ingresar cadena</label>
   <input id="idCadena" value="01001110">
   <select name="nVoltaje" id="idVoltaje">
@@ -34,7 +82,7 @@
   <button onclick="ObtenerPolarNRZ_I();"> Polar NRZ-I</button>
   <button onclick="ObtenerPolarRZ();"> Polar RZ</button>
   <button onclick="ObtenerManchester();"> Manchester</button>
-  <button onclick="ObtenerManchesterDiferencial();"> Manchester Diferencial (falta)</button>
+  <button onclick="ObtenerManchesterDiferencial();"> Manchester Diferencial</button>
   <button onclick="ObtenerAMI();"> AMI</button>
   <button onclick="ObtenerPseudoTernaria();"> Pseudo Ternaria</button>
   <button onclick="ObtenerB8ZS();"> B8ZS</button>
@@ -60,13 +108,13 @@
     let margin_spaces = 80;
 
     // Escala que determina o número de pontos que terá o plano cartesiano
-    let escala = 10;
+    let escala = 12;
 
     // Sequencia de letras que será nomeadao os pontos
     let alfabeto = "abcdefghijklmnñopqrstuvwzxz";
     //a      b       c       d      e
     pontosCartesianos = [
-    //[X, Y],
+      //[X, Y],
       [0, 0],
       [0, 2], //
       [1, 0],
@@ -106,7 +154,7 @@
     // cálcula o tamanho em pixels de cada unidade para cada coordenada da escala determinada.
     let step_size = [Math.floor((margin_spaces * 2 + ancho) / escala), Math.floor((margin_spaces * 2 + canvas
       .height) / escala)];
-      
+
     // ponto em pixels do ponto zero do 1º Quadrante
     let ponto_zero = [margin_spaces, alto - margin_spaces];
 
@@ -204,7 +252,7 @@
 
       // cria a linha vertical
       context.moveTo(margin_spaces, margin_spaces);
-      context.lineTo(margin_spaces, alto + 100- margin_spaces / 2);
+      context.lineTo(margin_spaces, alto + 100 - margin_spaces / 2);
 
       // cria a linha horizontal  
       context.moveTo(margin_spaces / 2, alto - margin_spaces);
@@ -235,8 +283,8 @@
       });
       */
 
-      drawnPoint([20, 2], 21);
-      drawnPoint([20, -2], 21);
+      drawnPoint([30, 2], 21);
+      drawnPoint([30, -2], 21);
       // dropa as linhas
       //drawnLines(pontosCartesianos, linesCartesianas);
     }
@@ -255,21 +303,20 @@
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , 2]);
-          pontosCartesianos.push([index * 2 + 2 , 2]);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , 0]);
-          pontosCartesianos.push([index * 2 + 2 , 0]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, 2]);
+          pontosCartesianos.push([index * 2 + 2, 2]);
+        } else {
+          pontosCartesianos.push([index * 2, 0]);
+          pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
@@ -278,20 +325,19 @@
       pontosCartesianos = [];
       var divisiones = $("#idCadena").val().split("");
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , -1]);
-          pontosCartesianos.push([index * 2 + 2 , -1]);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , 1]);
-          pontosCartesianos.push([index * 2 + 2 , 1]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, -1]);
+          pontosCartesianos.push([index * 2 + 2, -1]);
+        } else {
+          pontosCartesianos.push([index * 2, 1]);
+          pontosCartesianos.push([index * 2 + 2, 1]);
         }
       });
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
@@ -300,37 +346,31 @@
       voltaje = $("#idVoltaje").val();
       pontosCartesianos = [];
 
-      if (voltaje == 1)
-      {
-        pontosCartesianos.push([0 , 1]);
-      }
-      else
-      {
-        pontosCartesianos.push([0 , -1]);
+      if (voltaje == 1) {
+        pontosCartesianos.push([0, 1]);
+      } else {
+        pontosCartesianos.push([0, -1]);
       }
 
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        
-        if(voltaje == 1 && point == 1) {
+
+        if (voltaje == 1 && point == 1) {
           console.log("voltaje == 1 && point == 1");
           voltaje = -1;
-          pontosCartesianos.push([index * 2 , -1]);
-          pontosCartesianos.push([index * 2 + 2 , -1]);
-        }
-        else
-        {
-          if(voltaje == -1 && point == 1) {
+          pontosCartesianos.push([index * 2, -1]);
+          pontosCartesianos.push([index * 2 + 2, -1]);
+        } else {
+          if (voltaje == -1 && point == 1) {
             console.log("voltaje == -1 && point == 1");
             voltaje = 1;
-            pontosCartesianos.push([index * 2 , 1]);
-            pontosCartesianos.push([index * 2 + 2 , 1]);
-          }
-          else {
+            pontosCartesianos.push([index * 2, 1]);
+            pontosCartesianos.push([index * 2 + 2, 1]);
+          } else {
             console.log("cerooo");
             //pontosCartesianos.push([index * 2 , 1 * voltaje]);
-            pontosCartesianos.push([index * 2 + 2 , 1 * voltaje]);
+            pontosCartesianos.push([index * 2 + 2, 1 * voltaje]);
           }
         }
       });
@@ -338,9 +378,9 @@
 
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
@@ -350,25 +390,24 @@
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , 1]);
-          pontosCartesianos.push([index * 2 + 1 , 1]);
-          pontosCartesianos.push([index * 2 + 1 , 0]);
-          pontosCartesianos.push([index * 2 + 2 , 0]);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , -1]);
-          pontosCartesianos.push([index * 2 + 1 , -1]);
-          pontosCartesianos.push([index * 2 + 1 , 0]);
-          pontosCartesianos.push([index * 2 + 2 , 0]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, 1]);
+          pontosCartesianos.push([index * 2 + 1, 1]);
+          pontosCartesianos.push([index * 2 + 1, 0]);
+          pontosCartesianos.push([index * 2 + 2, 0]);
+        } else {
+          pontosCartesianos.push([index * 2, -1]);
+          pontosCartesianos.push([index * 2 + 1, -1]);
+          pontosCartesianos.push([index * 2 + 1, 0]);
+          pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
@@ -378,25 +417,24 @@
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , -2]);
-          pontosCartesianos.push([index * 2 + 1 , -2]);
-          pontosCartesianos.push([index * 2 + 1 , 2]);
-          pontosCartesianos.push([index * 2 + 2 , 2]);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , 2]);
-          pontosCartesianos.push([index * 2 + 1 , 2]);
-          pontosCartesianos.push([index * 2 + 1 , -2]);
-          pontosCartesianos.push([index * 2 + 2 , -2]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, -2]);
+          pontosCartesianos.push([index * 2 + 1, -2]);
+          pontosCartesianos.push([index * 2 + 1, 2]);
+          pontosCartesianos.push([index * 2 + 2, 2]);
+        } else {
+          pontosCartesianos.push([index * 2, 2]);
+          pontosCartesianos.push([index * 2 + 1, 2]);
+          pontosCartesianos.push([index * 2 + 1, -2]);
+          pontosCartesianos.push([index * 2 + 2, -2]);
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
@@ -407,104 +445,100 @@
 
       voltaje = $("#idVoltaje").val();
       if (voltaje == 1)
-        pontosCartesianos.push([0 , 2]);
+        pontosCartesianos.push([0, 2]);
       else
-        pontosCartesianos.push([0 , -2]);
+        pontosCartesianos.push([0, -2]);
 
       var divisiones = $("#idCadena").val().split("");
-      
+
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          
-          pontosCartesianos.push([index * 2 , 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 1 , 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 1 , -2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 2 , -2 * voltaje]);
-          voltaje = voltaje*-1;
-        }
-        else {
-          pontosCartesianos.push([index * 2 , - 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 1 , -2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 1 , 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 2 , 2 * voltaje]);
+        if (point == 1) {
+
+          pontosCartesianos.push([index * 2, 2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 1, 2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 1, -2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 2, -2 * voltaje]);
+          voltaje = voltaje * -1;
+        } else {
+          pontosCartesianos.push([index * 2, -2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 1, -2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 1, 2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
-    var ObtenerAMI = function (voltaje) { 
+    var ObtenerAMI = function (voltaje) {
       LimpiarCanvas();
       voltaje = $("#idVoltaje").val();
       voltaje = voltaje * (-1);
-      
+
       pontosCartesianos = [];
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 2 , 2 * voltaje]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, 2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
           voltaje = voltaje * (-1);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , 0]);
-          pontosCartesianos.push([index * 2 + 2 , 0]);
+        } else {
+          pontosCartesianos.push([index * 2, 0]);
+          pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
-    var ObtenerPseudoTernaria = function () { 
+    var ObtenerPseudoTernaria = function () {
       LimpiarCanvas();
 
       voltaje = $("#idVoltaje").val();
-      
+
       pontosCartesianos = [];
-      pontosCartesianos.push([0 , 0]);
+      pontosCartesianos.push([0, 0]);
 
       var divisiones = $("#idCadena").val().split("");
 
       divisiones.forEach((point, index) => {
-        if(point == 1) {
-          pontosCartesianos.push([index * 2 , 0]);
-          pontosCartesianos.push([index * 2 + 2 , 0]);
-        }
-        else {
-          pontosCartesianos.push([index * 2 , 2 * voltaje]);
-          pontosCartesianos.push([index * 2 + 2 , 2 * voltaje]);
+        if (point == 1) {
+          pontosCartesianos.push([index * 2, 0]);
+          pontosCartesianos.push([index * 2 + 2, 0]);
+        } else {
+          pontosCartesianos.push([index * 2, 2 * voltaje]);
+          pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
           voltaje = voltaje * -1;
         }
       });
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
-            [index, index + 1]
-          ];
-          drawnLines(pontosCartesianos, linesCartesianas);
+          [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas);
       });
     };
 
-    var LimpiarCanvas = function()
-    {
-      canvas.width=canvas.width;
+    var LimpiarCanvas = function () {
+      canvas.width = canvas.width;
       console.log("limpiando");
       //$("#Cartesiano").html("");
       drawPlanCartesiano();
     }
 
-//ObtenerPseudoTernaria
+    //ObtenerPseudoTernaria
   </script>
 
 
