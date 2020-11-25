@@ -47,15 +47,14 @@
       </ul>
     </div>
   </nav>
-  <div class="container">
+  <div class="container bg-light text-dark">
+
     <div class="row">
-      <div class="col-sm-8">
-        <div class="container" style="max-width: 100%; background-color:#F8F9F9">
-          <div class="form-row justify-content-center" style="margin-bottom: 7px;">
-            <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">Cadena a Enviar: </label>
+      <div class="col-sm-12 mt-1">
+          <div class="form-row justify-content-center" >
+            <label for="" class="col-sm-2">Cadena a Enviar: </label>
             <div class="col-sm-3">
-              <input type="text" class="form-control form-control-sm solo-numero-binario" id="idInputCadenaEnviada"
-                name="nInputCadenaEnviada" placeholder="Ej.: 0011010" maxlength="7">
+              <input type="text" id="idCadena" value="01001110" class="form-control solo-numero-binario" placeholder="Ej.: 0011010">
             </div>
             <div class="col-sm-1">
               <i class="fa fa-pencil" aria-hidden="true" onclick="GenerarBinarioAutomaticamente();"
@@ -66,11 +65,64 @@
                 onclick="AccionCodificar();">&gt;&gt;</button>
             </div>
           </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-sm-12">
+        <div class="form-row justify-content-center" >
+          <label for="" class="col-sm-2">Voltaje de Inicio: </label>
+          <div class="col-sm-3">
+            <select name="nVoltaje" class="custom-select" id="idVoltaje">
+              <option value="1">Positivo</option>
+              <option value="-1">Negativo</option>
+            </select>
+          </div>
+          <div class="col-sm-1"></div><div class="col-sm-1"></div>
         </div>
       </div>
     </div>
-  </div>
 
+    <div class="row mt-2" style="text-align: center;">
+      <div class="col-sm-12">
+          <button type="button" class="btn btn-outline-primary" onclick="ObtenerUniPolarNRZ();"> Unipolar NRZ</button>
+          <button type="button" class="btn btn-outline-primary" onclick="ObtenerPolarNRZ_L();"> Polar NRZ-L</button>
+          <button type="button" class="btn btn-outline-primary" onclick="ObtenerPolarNRZ_I();"> Polar NRZ-I</button>
+          <button type="button" class="btn btn-outline-primary" onclick="ObtenerPolarRZ();"> Polar RZ</button>
+      </div>
+    </div>
+
+    <div class="row mt-2" style="text-align: center;">
+      <div class="col-sm-12">
+          <button type="button" class="btn btn-outline-info" onclick="ObtenerManchester();"> Manchester</button>
+          <button type="button" class="btn btn-outline-info" onclick="ObtenerManchesterDiferencial();"> Manchester Diferencial</button>
+      </div>
+    </div>
+
+    <div class="row mt-2" style="text-align: center;">
+      <div class="col-sm-12">
+          <button type="button" class="btn btn-outline-danger" onclick="ObtenerAMI();"> AMI</button>
+          <button type="button" class="btn btn-outline-danger" onclick="ObtenerPseudoTernaria();"> Pseudo Ternaria</button>
+          <button type="button" class="btn btn-outline-danger" onclick="ObtenerB8ZS();"> B8ZS</button>
+          <button type="button" class="btn btn-outline-danger" onclick="ObtenerHDB3();"> HDB3</button>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+    </div>      
+    <div class="row">
+      <div class="col-sm-12">
+        <canvas id="Cartesiano" width="1000" height="400"></canvas>
+      </div>
+    </div>      
+
+    <div class="row">
+      <br>
+      <br>
+    </div>      
+
+  </div>
+<!--
   <label>ingresar cadena</label>
   <input id="idCadena" value="01001110">
   <select name="nVoltaje" id="idVoltaje">
@@ -87,7 +139,10 @@
   <button onclick="ObtenerPseudoTernaria();"> Pseudo Ternaria</button>
   <button onclick="ObtenerB8ZS();"> B8ZS</button>
   <button onclick="ObtenerHDB3();"> HDB3</button>
+
   <canvas id="Cartesiano" width="1000" height="400"></canvas>
+-->
+
   <script id="">
     /* 
     Array de pontos cartesianos, cada item da array precisa ter
@@ -204,8 +259,8 @@
     }
 
     // Cria as linhas no plano apartr das coordenas cartesianas
-    function drawnLines(coordenadas, lines) {
-      context.strokeStyle = '#ff0000';
+    function drawnLines(coordenadas, lines, color) {
+      context.strokeStyle = color;
       let coordenada_convertidas = coordenadas;
 
       //percorre as regras das linhas
@@ -311,12 +366,13 @@
           pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
+      color = '#007bff';
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -333,11 +389,12 @@
           pontosCartesianos.push([index * 2 + 2, 1]);
         }
       });
+      color = '#007bff';
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -374,13 +431,14 @@
           }
         }
       });
+      color = '#007bff';
       console.log(pontosCartesianos);
 
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -402,12 +460,13 @@
           pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
+      color = '#007bff';
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -429,12 +488,13 @@
           pontosCartesianos.push([index * 2 + 2, -2]);
         }
       });
+      color = '#17a2b8';
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -467,11 +527,12 @@
         }
       });
       console.log(pontosCartesianos);
+      color = '#17a2b8';
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -493,12 +554,13 @@
           pontosCartesianos.push([index * 2 + 2, 0]);
         }
       });
+      color = '#ff0000';
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
@@ -522,12 +584,13 @@
           voltaje = voltaje * -1;
         }
       });
+      color = '#ff0000';
       console.log(pontosCartesianos);
       pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
           [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas);
+        drawnLines(pontosCartesianos, linesCartesianas, color);
       });
     };
 
