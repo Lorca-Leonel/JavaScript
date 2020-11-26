@@ -217,12 +217,6 @@ var ObtenerCodificacion = function (tipo) {
         return;
     }
 
-    var divisiones = $("#idCadena").val().split("");
-    //console.log(divisiones);
-    divisiones.forEach((point, index) => {
-        //EscribirTexto(point, 536 , 276);
-    });
-
     try {
         //nonExistentFunction();
         
@@ -252,10 +246,10 @@ var ObtenerCodificacion = function (tipo) {
                 ObtenerPseudoTernaria();
                 break;
             case 'B8ZS':
-                //ObtenerB8ZS();
+                ObtenerB8ZS();
                 break;
             case 'HDB3':
-                //ObtenerHDB3();
+                ObtenerHDB3();
                 break;
         }
     } catch (error) {
@@ -496,6 +490,61 @@ var ObtenerPseudoTernaria = function () {
             pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
             voltaje = voltaje * -1;
         }
+    });
+    color = '#ff0000';
+    pontosCartesianos.forEach((point, index) => {
+        linesCartesianas = [
+            [index, index + 1]
+        ];
+        drawnLines(pontosCartesianos, linesCartesianas, color);
+    });
+};
+
+var ObtenerB8ZS = function () {
+    LimpiarCanvas();
+
+    voltaje = $("#idVoltaje").val();
+    //voltaje = voltaje * (-1);
+    pontosCartesianos = [];
+    pontosCartesianos.push([0, 0]);
+
+    var miCadena = $("#idCadena").val();
+    console.log("cadena original: " + miCadena);
+    var divisiones = miCadena.split("");
+
+    divisiones.forEach((point, index) => {
+        console.log("vuelta");
+        var cadenaParcial = miCadena.substr(index, index + 8);
+        
+        if (cadenaParcial == "00000000") {
+            //if (voltaje == 1) {
+            pontosCartesianos.push([index * 2, 0 ]);
+            pontosCartesianos.push([index * 2 + 6, 0 ]);
+            pontosCartesianos.push([index * 2 + 6, 2  * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 8, 2  * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 8, -2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 10, -2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 10, 0 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 12, 0 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 12, -2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 14, -2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 14, 2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 16, 2 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2 + 16, 0 * voltaje * -1 ]);
+            //}
+            index = index + 8;
+        }
+        else {
+            if (point == 1) {
+                pontosCartesianos.push([index * 2, 2 * voltaje]);
+                pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
+                voltaje = voltaje * (-1);        }
+            else {
+                pontosCartesianos.push([index * 2, 0]);
+                pontosCartesianos.push([index * 2 + 2, 0]);
+            }
+        }
+        
     });
     color = '#ff0000';
     pontosCartesianos.forEach((point, index) => {
