@@ -1,3 +1,16 @@
+function lanzarModalAlumno() {
+    $("#idModalBuscarAlumnoPorDNI").modal();
+}
+
+function lanzarModalAjustes() {
+    $("#idModalAjustes").modal();
+}
+/*
+function AjustarEstala() {
+    var nuevaEscala = $("#idSelectEscala").val();
+    escala = nuevaEscala;
+}
+*/
 function GenerarBinarioAutomaticamente() {
     i = Math.floor((Math.random() * 2));
     $("#idCadena").val(i);
@@ -151,6 +164,8 @@ function drawPlanCartesiano() {
       drawnPoint(point, index);
     });
     */
+
+    
 
     drawnPoint([30, 2], 0);
     drawnPoint([30, -2], 0);

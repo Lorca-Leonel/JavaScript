@@ -53,6 +53,11 @@
             <i class="fa fa-user"></i> Alumno <span class="sr-only"></span>
           </a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#" onclick="lanzarModalAjustes();">
+            <i class="fas fa-cogs"></i> Ajustes <span class="sr-only"></span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -69,8 +74,7 @@
           </div>
           <div class="col-sm-1">
             <button type="button" class="btn btn-primary mt-1" onclick="GenerarBinarioAutomaticamente();">
-              <i class="fas fa-pencil-alt" aria-hidden="true" 
-                title="Generar un binario aleatorio de 10 digitos"></i>
+              <i class="fas fa-pencil-alt" aria-hidden="true" title="Generar un binario aleatorio de 10 digitos"></i>
             </button>
           </div>
         </div>
@@ -104,8 +108,7 @@
           </div>
           <div class="col-sm-1">
             <button type="button" class="btn btn-primary" onclick="EscribirTexto();">
-              <i class="fas fa-step-forward" aria-hidden="true" 
-                title="Procesar paso a paso"></i>
+              <i class="fas fa-step-forward" aria-hidden="true" title="Procesar paso a paso"></i>
             </button>
           </div>
         </div>
@@ -142,6 +145,7 @@
         <button type="button" class="btn btn-outline-danger" onclick="ObtenerCodificacion('B8ZS');"> B8ZS</button>
         <button type="button" class="btn btn-outline-danger" onclick="ObtenerCodificacion('HDB3');"> HDB3</button>
       </div>
+
     </div>
 
     <div class="row mt-2">
@@ -150,8 +154,189 @@
       </div>
     </div>
 
+    <div id="divMisModales">
+      <div class="modal fade bd-example-modal" id="idModalBuscarAlumnoPorDNI" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" style="display: none" aria-modal="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-success">
+              <h5 class="modal-title" id="exampleModalLabel">Datos Alumno</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body" style="padding: 2%;">
+              <div class="container">
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Universidad:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <input type="text" value="Universidad Tecnológica Nacional" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Facultad:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <input type="text" value="Facultad Regional Tucumán" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Carrera:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <input type="text" value="Ingenieria en Sistemas de Información" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Materia:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <input type="text" value="Comunicaciones" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Comisión:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-4">
+                    <input type="text" value="3K2" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Año:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-4">
+                    <input type="text" value="2020" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Nombre:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <input type="text" value="ARCE JUAN EDUARDO" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Legajo:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-4">
+                    <input type="text" value="31428" disabled
+                      class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder=""
+                      aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade bd-example-modal" id="idModalAjustes" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" style="display: none" aria-modal="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-success">
+              <h5 class="modal-title" id="exampleModalLabel">Ajustes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body" style="padding: 2%;">
+              <div class="container">
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Tamaño de Escala:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <select name="nSelectEscala" class="custom-select" id="idSelectEscala" onchange="AjustarEstala();">
+                      <option value="12">15 Digitos</option>
+                      <option value="14">20 Digitos</option>
+                      <option value="16">25 Digitos</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
 
     <script id="">
+      function AjustarEstala() {
+
+        canvas.width = canvas.width;
+        //LimpiarCanvas();
+        console.log("entramos");
+        var nuevaEscala = $("#idSelectEscala").val();
+        //var nuevaEscala = 20;
+        escala = nuevaEscala;
+
+        pontosCartesianos = [];
+        linesCartesianas = [];
+        margin_spaces = 80;
+        //let escala = 12;
+        alfabeto = " abcdefghijklmnñopqrstuvwzxz";
+        pontosCartesianos = [
+          //[X, Y],
+                ];
+
+        linesCartesianas = [
+          [0, 1]
+        ];
+
+        canvas = document.getElementById('Cartesiano');
+        context = canvas.getContext('2d');
+
+        ancho = 300;
+        alto = 300;
+
+        escala = Math.ceil(escala * 1.2);
+        step_size = [Math.floor((margin_spaces * 2 + ancho) / escala), Math.floor((margin_spaces * 2 + canvas
+          .height) / escala)];
+
+        ponto_zero = [margin_spaces, alto - margin_spaces];
+
+        converte_primeiro_para_quarto = coordenada => [ponto_zero[0] + coordenada[0] * step_size[0], ponto_zero[1] +
+          coordenada[1] * step_size[1] * -1
+        ];
+
+        drawPlanCartesiano();
+      }
+
       let pontosCartesianos = [];
       let linesCartesianas = [];
       let margin_spaces = 80;
@@ -199,10 +384,9 @@
 
       let ponto_zero = [margin_spaces, alto - margin_spaces];
 
-      const converte_primeiro_para_quarto = coordenada => [ponto_zero[0] + coordenada[0] * step_size[0], ponto_zero[1] +
+      let converte_primeiro_para_quarto = coordenada => [ponto_zero[0] + coordenada[0] * step_size[0], ponto_zero[1] +
         coordenada[1] * step_size[1] * -1
       ];
-      
     </script>
 
 </body>
