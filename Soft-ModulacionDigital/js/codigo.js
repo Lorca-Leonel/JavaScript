@@ -5,6 +5,12 @@ function lanzarModalAlumno() {
 function lanzarModalAjustes() {
     $("#idModalAjustes").modal();
 }
+
+function lanzarModalMensaje(titulo, detalle) {
+    $("#idModalMensaje_Titulo").html(titulo);
+    $("#idModalMensaje_Detalle").html(detalle);
+    $("#idModalMensajes").modal();
+}
 /*
 function AjustarEstala() {
     var nuevaEscala = $("#idSelectEscala").val();
@@ -32,99 +38,19 @@ function GenerarBinarioAutomaticamente() {
     $("#idCadena").val($("#idCadena").val() + i);
     i = Math.floor((Math.random() * 2));
     $("#idCadena").val($("#idCadena").val() + i);
+    i = Math.floor((Math.random() * 2));
+    $("#idCadena").val($("#idCadena").val() + i);
+    i = Math.floor((Math.random() * 2));
+    $("#idCadena").val($("#idCadena").val() + i);
+    i = Math.floor((Math.random() * 2));
+    $("#idCadena").val($("#idCadena").val() + i);
+    i = Math.floor((Math.random() * 2));
+    $("#idCadena").val($("#idCadena").val() + i);
+    i = Math.floor((Math.random() * 2));
+    $("#idCadena").val($("#idCadena").val() + i);
 }
 
-/*
-Função que desenha todos os componentes de um ponto no plano cartesiano
-*/
-function drawnPoint(coordenada, index) {
-    // Converte a coordenada do 1º Quadrante para 4º Quadrante (Pixels) 
-    let coordenada_normalizada = converte_primeiro_para_quarto(coordenada);
 
-    context.beginPath();
-    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
-
-    // cria o ponto
-    //context.arc(coordenada_normalizada[0], coordenada_normalizada[1], 3, 0, Math.PI * 2, true);
-    // context.fill();
-
-    // cria o texto
-    context.font = 'italic 18px roboto';
-    context.fillText(alfabeto[index], coordenada_normalizada[0] - margin_spaces * 1.4, coordenada_normalizada[1] -
-        margin_spaces * 0.2);
-    context.closePath();
-
-    // cria linha pontilhada horizontal
-    context.beginPath();
-    context.setLineDash([5, 5]);
-    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
-    context.lineTo(margin_spaces, coordenada_normalizada[1]);
-    context.stroke();
-    context.closePath();
-
-    // cria linha pontilhada vertical
-    context.beginPath();
-    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
-    context.lineTo(coordenada_normalizada[0], alto - margin_spaces);
-    context.stroke();
-    context.closePath();
-
-    // cria os textos nas absissas e nas ordenadas
-    context.font = '30px arial';
-    //context.strokeStyle = '#ff0000';
-    context.fillText('', coordenada_normalizada[0] - margin_spaces * 0.3, alto - margin_spaces * 0.3);
-    context.fillText('', margin_spaces * 0.3, coordenada_normalizada[1]);
-
-    //
-    
-}
-
-let espacioLetraInicial = 110;
-let espacioEntreLetra = 55;
-
-var EscribirTexto = function (caracter, indice) {
-    context.fillText(caracter, espacioLetraInicial + espacioEntreLetra * indice + indice * 4, 130);
-    //alert("entramos");
-};
-
-// Cria as linhas no plano apartr das coordenas cartesianas
-function drawnLines(coordenadas, lines, color) {
-    context.strokeStyle = color;
-    let coordenada_convertidas = coordenadas;
-
-    //percorre as regras das linhas
-    lines.forEach(line => {
-        /* 
-          Para cada coordenada em que a linha referencia, 
-          antes de deter a coordenada do quadrante, é somado um valor de direção
-          primeira ponto da linha diminui e o segundo um maior
-        */
-        coordenada_convertidas = coordenada_convertidas.map(
-            (coordenada, index) => {
-                let direction = 0;
-                return converte_primeiro_para_quarto([coordenada[0] + direction, coordenada[1] + direction]);
-            });
-
-        context.beginPath();
-        context.lineWidth = 5;
-        context.setLineDash([0, 0]);
-        
-        context.moveTo(coordenada_convertidas[line[0]][0], coordenada_convertidas[line[0]][1]);
-        context.lineTo(coordenada_convertidas[line[1]][0], coordenada_convertidas[line[1]][1]);
-        context.stroke();
-        context.closePath();
-    });
-}
-/*
-function angle(cx, cy, ex, ey) {
-  var dy = ey - cy;
-  var dx = ex - cx;
-  var theta = Math.atan2(dy, dx); // range (-PI, PI]
-  theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
-  //if (theta < 0) theta = 360 + theta; // range [0, 360)
-  return theta;
-}
-*/
 function drawPlanCartesiano() {
     // Flecha triângulo ^
     context.beginPath();
@@ -164,12 +90,27 @@ function drawPlanCartesiano() {
       drawnPoint(point, index);
     });
     */
+    var columnas;
+    console.log(escala);
+    switch (escala) {
+        case 15:
+            columnas = 15;
+            break;
+        case 24: // foo es 0, por lo tanto se cumple la condición y se ejecutara el siguiente bloque
+            columnas = 23;
+            break
+        default:
+            columnas = 15;
+            break;
+    }
 
-    
+    for (var i = 1; i <= columnas; i++) {
+        drawnPoint([i * 2, -2], 0);
+        drawnPoint([i * 2, 2], 0);
+    }
+     
 
-    drawnPoint([30, 2], 0);
-    drawnPoint([30, -2], 0);
-    
+    /*
     drawnPoint([2, -2], 0);
     drawnPoint([2, 2], 0);
 
@@ -211,10 +152,119 @@ function drawPlanCartesiano() {
 
     drawnPoint([28, -2], 0);
     drawnPoint([28, 2], 0);
+    */
 
     // dropa as linhas
     //drawnLines(pontosCartesianos, linesCartesianas);
 }
+
+
+/*
+Função que desenha todos os componentes de um ponto no plano cartesiano
+*/
+function drawnPoint(coordenada, index) {
+    // Converte a coordenada do 1º Quadrante para 4º Quadrante (Pixels) 
+    let coordenada_normalizada = converte_primeiro_para_quarto(coordenada);
+
+    context.beginPath();
+    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
+
+    // cria o ponto
+    //context.arc(coordenada_normalizada[0], coordenada_normalizada[1], 3, 0, Math.PI * 2, true);
+    // context.fill();
+
+    // cria o texto
+    context.font = 'italic 18px roboto';
+    context.fillText(alfabeto[index], coordenada_normalizada[0] - margin_spaces * 1.4, coordenada_normalizada[1] -
+        margin_spaces * 0.2);
+    context.closePath();
+
+    // cria linha pontilhada horizontal
+    context.beginPath();
+    context.setLineDash([1, 1]);
+    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
+    context.lineTo(margin_spaces, coordenada_normalizada[1]);
+    context.stroke();
+    context.closePath();
+
+    // cria linha pontilhada vertical
+    context.beginPath();
+    context.moveTo(coordenada_normalizada[0], coordenada_normalizada[1]);
+    context.lineTo(coordenada_normalizada[0], alto - margin_spaces);
+    context.stroke();
+    context.closePath();
+
+    // cria os textos nas absissas e nas ordenadas
+    context.font = '30px arial';
+    //context.strokeStyle = '#ff0000';
+    context.fillText('', coordenada_normalizada[0] - margin_spaces * 0.3, alto - margin_spaces * 0.3);
+    context.fillText('', margin_spaces * 0.3, coordenada_normalizada[1]);
+
+    //
+
+}
+
+let espacioLetraInicial = 110;
+let espacioEntreLetra = 55;
+
+let espacioLetraInicialChica = 95;
+let espacioEntreLetraChica = 30;
+
+let espacioSobreGrafico = 130;
+let espacioSobreGraficoChico = 150;
+
+var EscribirTexto = function (caracter, indice) {
+    
+    console.log(escala);
+    if (escala ==15) {
+        context.font = '30px arial';
+        context.fillText(caracter, espacioLetraInicial + espacioEntreLetra * indice + indice * 4, espacioSobreGrafico);  
+    }
+    else {
+        context.font = '20px arial';
+        context.fillText(caracter, espacioLetraInicialChica + espacioEntreLetraChica * indice + indice * 8 - 2, espacioSobreGraficoChico);
+    }
+};
+
+// Cria as linhas no plano apartr das coordenas cartesianas
+function drawnLines(coordenadas, lines, color) {
+    context.strokeStyle = color;
+    let coordenada_convertidas = coordenadas;
+
+    //percorre as regras das linhas
+    lines.forEach(line => {
+        /* 
+          Para cada coordenada em que a linha referencia, 
+          antes de deter a coordenada do quadrante, é somado um valor de direção
+          primeira ponto da linha diminui e o segundo um maior
+        */
+        coordenada_convertidas = coordenada_convertidas.map(
+            (coordenada, index) => {
+                let direction = 0;
+                return converte_primeiro_para_quarto([coordenada[0] + direction, coordenada[1] + direction]);
+            });
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.setLineDash([0, 0]);
+
+        context.moveTo(coordenada_convertidas[line[0]][0], coordenada_convertidas[line[0]][1]);
+        context.lineTo(coordenada_convertidas[line[1]][0], coordenada_convertidas[line[1]][1]);
+        context.stroke();
+        context.closePath();
+    });
+}
+/*
+function angle(cx, cy, ex, ey) {
+  var dy = ey - cy;
+  var dx = ex - cx;
+  var theta = Math.atan2(dy, dx); // range (-PI, PI]
+  theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+  //if (theta < 0) theta = 360 + theta; // range [0, 360)
+  return theta;
+}
+*/
+
 
 /******************/
 /******************/
@@ -223,17 +273,18 @@ function drawPlanCartesiano() {
 /******************/
 
 var ObtenerCodificacion = function (tipo) {
-    
+
     var cadena = $("#idCadena").val();
-    if (cadena == ""){
-        alert("Error!.. Se debe colocar una cadena binaria para procesar.");
+    if (cadena == "") {
+        //alert();
+        lanzarModalMensaje("Error!", "Se debe colocar una cadena binaria en el campo <b>Cadena a Procesar</b>.");
         $("#idCadena").focus();
         return;
     }
 
     try {
         //nonExistentFunction();
-        
+
         switch (tipo) {
             case 'UniPolarNRZ':
                 ObtenerUniPolarNRZ();
@@ -272,7 +323,7 @@ var ObtenerCodificacion = function (tipo) {
             EscribirTexto(point, index);
         });
     }
-    
+
 };
 
 var ObtenerUniPolarNRZ = function () {
@@ -290,7 +341,7 @@ var ObtenerUniPolarNRZ = function () {
             pontosCartesianos.push([index * 2 + 2, 0]);
         }
 
-        
+
     });
     color = '#007bff';
     pontosCartesianos.forEach((point, index) => {
@@ -466,6 +517,7 @@ var ObtenerAMI = function (voltaje) {
 
     divisiones.forEach((point, index) => {
         if (point == 1) {
+            pontosCartesianos.push([index * 2, 0]);
             pontosCartesianos.push([index * 2, 2 * voltaje]);
             pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
             voltaje = voltaje * (-1);
@@ -516,7 +568,7 @@ var ObtenerB8ZS = function () {
     LimpiarCanvas();
 
     voltaje = $("#idVoltaje").val();
-    //voltaje = voltaje * (-1);
+    voltaje = voltaje * (-1);
     pontosCartesianos = [];
     pontosCartesianos.push([0, 0]);
 
@@ -525,35 +577,34 @@ var ObtenerB8ZS = function () {
 
     var longitudCadena = miCadena.length;
     var index = 0;
-    
+
     //divisiones.forEach((point, index) => {
     while (index < longitudCadena) {
         var cadenaParcial = miCadena.substr(index, 8);
-        
+
         if (cadenaParcial == "00000000") {
             //if (voltaje == 1) {
-            pontosCartesianos.push([index * 2, 0 ]);
-            pontosCartesianos.push([index * 2 + 6, 0 ]);
-            pontosCartesianos.push([index * 2 + 6, 2  * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 8, 2  * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 8, -2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 10, -2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 10, 0 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 12, 0 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 12, -2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 14, -2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 14, 2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 16, 2 * voltaje * -1 ]);
-            pontosCartesianos.push([index * 2 + 16, 0 * voltaje * -1 ]);
+            pontosCartesianos.push([index * 2, 0]);
+            pontosCartesianos.push([index * 2 + 6, 0]);
+            pontosCartesianos.push([index * 2 + 6, 2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 8, 2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 8, -2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 10, -2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 10, 0 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 12, 0 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 12, -2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 14, -2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 14, 2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 16, 2 * voltaje * -1]);
+            pontosCartesianos.push([index * 2 + 16, 0 * voltaje * -1]);
             //}
             index = index + 8;
-        }
-        else {
+        } else {
             if (miCadena[index] == 1) {
                 pontosCartesianos.push([index * 2, 2 * voltaje]);
                 pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
-                voltaje = voltaje * (-1);        }
-            else {
+                voltaje = voltaje * (-1);
+            } else {
                 pontosCartesianos.push([index * 2, 0]);
                 pontosCartesianos.push([index * 2 + 2, 0]);
             }
@@ -574,7 +625,8 @@ var ObtenerHDB3 = function () {
     LimpiarCanvas();
 
     voltaje = $("#idVoltaje").val();
-
+    voltaje = voltaje * (-1);
+    
     pontosCartesianos = [];
     pontosCartesianos.push([0, 0]);
 
@@ -589,32 +641,30 @@ var ObtenerHDB3 = function () {
         if (cadenaParcial == "0000") {
             if (cantidadUnos % 2 == 0) {
                 voltaje = voltaje * -1;
-                pontosCartesianos.push([index * 2, 0 ]);
-                pontosCartesianos.push([index * 2, 2 * voltaje *-1]);
-                pontosCartesianos.push([index * 2 + 2, 2 * voltaje *-1 ]);
+                pontosCartesianos.push([index * 2, 0]);
+                pontosCartesianos.push([index * 2, 2 * voltaje * -1]);
+                pontosCartesianos.push([index * 2 + 2, 2 * voltaje * -1]);
                 pontosCartesianos.push([index * 2 + 2, 0]);
                 pontosCartesianos.push([index * 2 + 6, 0]);
-                pontosCartesianos.push([index * 2 + 6, 2 * voltaje *-1 ]);
-                pontosCartesianos.push([index * 2 + 8, 2 * voltaje *-1 ]);
+                pontosCartesianos.push([index * 2 + 6, 2 * voltaje * -1]);
+                pontosCartesianos.push([index * 2 + 8, 2 * voltaje * -1]);
                 pontosCartesianos.push([index * 2 + 8, 0]);
-            }
-            else {
-                pontosCartesianos.push([index * 2, 0 ]);
-                pontosCartesianos.push([index * 2 + 6, 0 ]);
+            } else {
+                pontosCartesianos.push([index * 2, 0]);
+                pontosCartesianos.push([index * 2 + 6, 0]);
                 pontosCartesianos.push([index * 2 + 6, 2 * voltaje * -1]);
                 pontosCartesianos.push([index * 2 + 8, 2 * voltaje * -1]);
                 pontosCartesianos.push([index * 2 + 8, 0]);
             }
             index = index + 4;
             cantidadUnos = 0;
-        }
-        else {
+        } else {
             if (miCadena[index] == 1) {
                 cantidadUnos = cantidadUnos + 1;
                 pontosCartesianos.push([index * 2, 2 * voltaje]);
                 pontosCartesianos.push([index * 2 + 2, 2 * voltaje]);
-                voltaje = voltaje * (-1);        }
-            else {
+                voltaje = voltaje * (-1);
+            } else {
                 pontosCartesianos.push([index * 2, 0]);
                 pontosCartesianos.push([index * 2 + 2, 0]);
             }

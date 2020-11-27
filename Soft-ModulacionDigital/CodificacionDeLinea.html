@@ -34,7 +34,7 @@
 
 </head>
 
-<body onload="drawPlanCartesiano();" class="bg-light">
+<body onload="AjustarEstala();" class="bg-light">
   <nav class="navbar navbar-expand-sm navbar-light bg-success">
     <a class="navbar-brand" href="#">Codificanción en Linea</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -69,12 +69,12 @@
         <div class="form-row justify-content-center">
           <label for="" class="col-sm-2 mt-2">Cadena a Procesar: </label>
           <div class="col-sm-3">
-            <input type="text" id="idCadena" value="100000000" maxlength="15" class="form-control solo-numero-binario"
+            <input type="text" id="idCadena" value="" maxlength="23" class="form-control solo-numero-binario"
               placeholder="Ej.: 0011010">
           </div>
           <div class="col-sm-1">
             <button type="button" class="btn btn-primary mt-1" onclick="GenerarBinarioAutomaticamente();">
-              <i class="fas fa-pencil-alt" aria-hidden="true" title="Generar un binario aleatorio de 10 digitos"></i>
+              <i class="fas fa-pencil-alt" aria-hidden="true" title="Generar un binario aleatorio de 15 digitos"></i>
             </button>
           </div>
         </div>
@@ -155,6 +155,9 @@
     </div>
 
     <div id="divMisModales">
+
+
+      <!--
       <div class="modal fade bd-example-modal" id="idModalBuscarAlumnoPorDNI" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" style="display: none" aria-modal="true">
         <div class="modal-dialog">
@@ -257,9 +260,8 @@
         </div>
       </div>
 
-      <div class="modal fade bd-example-modal" id="idModalAjustes" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" style="display: none" aria-modal="true">
-        <div class="modal-dialog">
+      <div class="modal fade bd-example-modal-sm" id="idModalAjustes" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header bg-success">
               <h5 class="modal-title" id="exampleModalLabel">Ajustes</h5>
@@ -271,13 +273,12 @@
               <div class="container">
                 <div class="row" style="padding: 0px;">
                   <div class="d-inline col-4">
-                    Tamaño de Escala:
+                    Cantidad:
                   </div>
                   <div class="input-group input-group-sm mb-3 col-8">
                     <select name="nSelectEscala" class="custom-select" id="idSelectEscala" onchange="AjustarEstala();">
-                      <option value="12">15 Digitos</option>
-                      <option value="14">20 Digitos</option>
-                      <option value="16">25 Digitos</option>
+                      <option value="12" selected>15 Digitos</option>
+                      <option value="20" >23 Digitos</option>
                     </select>
                   </div>
                 </div>
@@ -290,20 +291,27 @@
           </div>
         </div>
       </div>
-
+      -->
     </div>
 
-
+    <script id="siunb">
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+          document.getElementById("divMisModales").innerHTML = xmlhttp.responseText;
+      }
+      xmlhttp.open("GET", "Modales.html", true);
+      xmlhttp.send();
+    </script>
+    
 
     <script id="">
       function AjustarEstala() {
-
         canvas.width = canvas.width;
         //LimpiarCanvas();
-        console.log("entramos");
+        
         var nuevaEscala = $("#idSelectEscala").val();
-        //var nuevaEscala = 20;
-        escala = nuevaEscala;
+
+        escala = nuevaEscala === undefined ? 12 : nuevaEscala;
 
         pontosCartesianos = [];
         linesCartesianas = [];
@@ -312,7 +320,7 @@
         alfabeto = " abcdefghijklmnñopqrstuvwzxz";
         pontosCartesianos = [
           //[X, Y],
-                ];
+        ];
 
         linesCartesianas = [
           [0, 1]
@@ -344,14 +352,15 @@
       let alfabeto = " abcdefghijklmnñopqrstuvwzxz";
       pontosCartesianos = [
         //[X, Y],
+        /*
         [0, 0],
-        [0, 2], //
+        [0, 2], 
         [1, 0],
         [1, 2],
         [2, 0],
         [2, 2],
         [3, 0],
-        [3, 2], //
+        [3, 2], 
         [4, 0],
         [4, 2],
         [5, 0],
@@ -366,6 +375,7 @@
         [9, 2],
         [10, 0],
         [10, 2],
+        */
       ];
 
       linesCartesianas = [
