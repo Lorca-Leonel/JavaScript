@@ -2,11 +2,14 @@
 desarrollos hechos en JavaScript
 
 Prueba los siguientes links:
-  sistema hamming
-    https://arce-juan.github.io/JavaScript/Hamming/Hamming.html
-  
   promise JS
     https://arce-juan.github.io/JavaScript/Promise%20JS/index.html
-
-  Codificacion en Linea en comunicaciones
+    
+  sistema Hamming - Comunicaciones
+    https://arce-juan.github.io/JavaScript/Hamming/Hamming.html
+  
+  Codificacion en Banda Base - Comunicaciones
     https://arce-juan.github.io/JavaScript/ModulacionBandaBase/ModulacionBandaBase.html
+
+  Modulacion Digital - Comunicaciones
+    https://arce-juan.github.io/JavaScript/ModulacionDigital/ModulacionDigital.html
