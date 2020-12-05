@@ -1,0 +1,217 @@
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  <meta name="description" content="Ejemplo de curvas sinusoidales.">
+  <meta name="keywords"
+    content="ejemplo, canvas, HTML5,JavaScript, sinusoide, senoide, curva sinusoidal,amplitud, frecuencia">
+
+  <meta name="author" content="enxaneta.info">
+  <meta property="og:title" content="Ejemplo de curvas sinusoidales.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://w3.unpocodetodo.info/images/w3_og.png">
+  <meta property="og:url" content="w3.unpocodetodo.info/lab/ejemplos/sin.html">
+  <meta property="og:site_name" content="w3.unpocodetodo.info">
+  <meta property="og:description" content="Ejemplo de curvas sinusoidales.">
+
+  <link rel="icon" type="image/png" href="http://w3.unpocodetodo.info/images/w3.png">
+  <!--<link rel="icon" type="image/png" href="http://w3.unpocodetodo.info/img/favicon.png">-->
+  <!-- 57x57 older iPhone and Android devices -->
+  <!--<link rel="apple-touch-icon-precomposed" href="http://w3.unpocodetodo.infoimages/apple-touch-icon-precomposed.png">-->
+  <!-- iPad 1 and 2 & iPad mini -->
+  <link rel="apple-touch-icon" sizes="72x72" href="http://w3.unpocodetodo.info/images/apple-touch-icon-72x72.png">
+  <!-- iPhone 4, 4S, 5 and iPod Touch -->
+  <link rel="apple-touch-icon" sizes="114x114" href="http://w3.unpocodetodo.info/images/apple-touch-icon-114x114.png">
+  <!-- iPad 3rd gen -->
+  <link rel="apple-touch-icon" sizes="144x144" href="http://w3.unpocodetodo.info/images/apple-touch-icon-144x144.png">
+  <title>Curvas Sin y cosin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      font-size: 16px;
+      color: Cornsilk;
+      margin: 1em auto 0 auto;
+    }
+
+    #c {
+      background-color: #000;
+      display: block;
+    }
+
+    p {
+      padding: 1em 0 1em 100px;
+      max-width: 800px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 200%;
+      text-align: center;
+      font-weight: normal;
+    }
+
+    p,
+    label,
+    input,
+    span {
+      margin-top: 0;
+    }
+
+    label {
+      display: inline-block;
+      width: 6em;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Curvas Sin y cosin</h1>
+  <p>La curva blanca es una curva sinusoidal, mientras que la curva amarilla es una curva cosinusoidal.</p>
+  <canvas id="c" width="800" height="500"></canvas>
+
+  <p>
+    <label for="amplitude">amplitud: </label>
+    <input type="range" id="amplitude" min="0" max="200" value="100"> <span class="amplitude output">131</span>
+  </p>
+
+  <p>
+    <label for="frequence">frequencia: </label>
+    <input type="range" id="frequence" min="0" max="10" value="1"> <span class="frequence output">0.034</span>
+  </p>
+
+  <p>
+    <label for="faseInicial">fase inicial: </label>
+    <input type="range" id="faseInicial" min="0" max="360" value="0"> <span class="faseInicial output">0.00</span>
+  </p>
+
+  <script>
+    var c = document.getElementById("c");
+    var ctx = c.getContext("2d");
+
+    var cw = c.width = 800,
+      cx = cw / 2;
+    var ch = c.height = 500,
+      cy = ch / 2;
+    var rad = Math.PI / 180;
+    
+    console.log(rad);
+
+    var coordsOffset = 50;
+    var amplitude = 100;
+    var frequence = Math.PI / 180 * document.querySelector("#frequence").value;
+    var phi = Math.PI / 180 * document.querySelector("#faseInicial").value * rad;
+
+
+    // text
+    ctx.textAlign = "center";
+    ctx.font = "16px Verdana";
+    ctx.fillStyle = "white";
+
+    function drawCoords(amplitude, frequence, a) {
+
+      // COORDS
+      ctx.strokeStyle = "#555";
+      // vertical
+      ctx.beginPath();
+      ctx.moveTo(coordsOffset, coordsOffset);
+      ctx.lineTo(coordsOffset, ch - coordsOffset);
+      ctx.stroke();
+      // horizontal
+      ctx.beginPath();
+      ctx.moveTo(coordsOffset, ch / 2);
+      ctx.lineTo(cw - coordsOffset, ch / 2);
+      ctx.stroke();
+
+      var a = 0;
+      for (var x = 0; x < cw - 2 * coordsOffset; x++) {
+
+        if (x % 90 == 0) {
+          ctx.moveTo(x + coordsOffset, (ch / 2) - 10);
+          ctx.lineTo(x + coordsOffset, (ch / 2) + 10);
+          ctx.stroke();
+          ctx.fillText((~~(a * 100)) / 100, x + coordsOffset, ch / 2 - 15);
+        }
+        a += frequence;
+      }
+    }
+
+
+    function drawSin(amplitude, frequence, a, phi) {
+      phi = 3.14
+      console.log("ampli:" + amplitude + " - frecue:" + frequence + " - a:" + a + " - phi:" + phi);
+      // SIN												
+      ctx.beginPath();
+      ctx.moveTo(coordsOffset, ch / 2);
+      for (var x = coordsOffset; x < cw - coordsOffset; x++) {
+        var y = Math.sin(a + phi) * amplitude + ch / 2;
+        a += frequence;
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = "red";
+      ctx.stroke();
+    }
+
+    function drawCoss(amplitude, frequence, a, phi) {
+      // COS
+      ctx.beginPath();
+      ctx.moveTo(coordsOffset, ch / 2 + amplitude);
+      for (var x = coordsOffset; x < cw - coordsOffset; x++) {
+        var y = Math.cos(a + phi) * amplitude + ch / 2;
+        a += frequence;
+        ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = "yellow";
+      ctx.stroke();
+    }
+
+    function init(amplitude, frequence, a, phi) {
+      ctx.clearRect(0, 0, cw, ch);
+      drawCoords(amplitude, frequence, a, phi);
+      drawSin(amplitude, frequence, a, phi);
+      drawCos(amplitude, frequence, a, phi);
+      document.querySelector(".amplitude.output").innerHTML = amplitude;
+      document.querySelector(".frequence.output").innerHTML = parseInt(frequence * 1000) / 1000;
+      document.querySelector(".faseInicial.output").innerHTML = phi.toFixed(2);
+    }
+
+    window.addEventListener("load", function () {
+      amplitude = 100;
+      phi = 0;
+      init(amplitude, frequence, 0, phi)
+    }, false);
+
+
+    document.querySelector("#amplitude").addEventListener("input", function () {
+      amplitude = parseInt(this.value);
+      frequence = Math.PI / 180 * document.querySelector("#frequence").value
+      phi = Math.PI / 180 * document.querySelector("#faseInicial").value * rad;
+      init(amplitude, frequence, 0, phi)
+    }, false);
+
+    document.querySelector("#frequence").addEventListener("input", function () {
+      frequence = (parseInt(this.value) * rad);
+      amplitude = parseInt(document.querySelector("#amplitude").value);
+      phi = Math.PI / 180 * document.querySelector("#faseInicial").value * rad;
+      init(amplitude, frequence, 0, phi)
+    }, false);
+
+    document.querySelector("#faseInicial").addEventListener("input", function () {
+      phi = (parseInt(this.value) * rad);
+      amplitude = parseInt(document.querySelector("#amplitude").value);
+      frequence = Math.PI / 180 * document.querySelector("#frequence").value
+      init(amplitude, frequence, 0, phi)
+    }, false);
+  </script>
+
+
+
+</body>
+
+</html>
