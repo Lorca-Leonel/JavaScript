@@ -54,10 +54,10 @@
   <div class="container  col-sm-12 bg-light text-dark">
     <div class="row">
       <div class="col-sm-12 mt-1">
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Cadena a Procesar: </label>
           <div class="col-sm-3">
-            <input type="text" id="idCadena" value="" maxlength="23" class="form-control solo-numero-binario"
+            <input type="text" id="idCadena" value="" maxlength="27" class="form-control solo-numero-binario"
               placeholder="Ej.: 0011010">
           </div>
           <div class="col-sm-1">
@@ -71,7 +71,7 @@
 
     <div class="row mt-2">
       <div class="col-sm-12">
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Modo de Proceso: </label>
           <div class="col-sm-3">
             <select name="nVoltaje" class="custom-select" id="idSelectTipoProceso">
@@ -86,7 +86,7 @@
       </div>
     </div>
 
-    <div class="row mt-2" style="text-align: center;">
+    <div class="row mt-2" style="text-align: left;">
       <div class="col-sm-12">
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('ASK');">ASK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('2ASK');">2-ASK</button>
@@ -123,23 +123,19 @@
       cy = ch / 2;
     var rad = Math.PI / 180;
 
-    console.log(rad);
-
     var coordsOffset = 20;
     var amplitude = 100;
     var frequence = Math.PI / 180 * 0.034;
     var phi = Math.PI / 180 * 0.00 * rad;
 
-
     // text
     ctx.textAlign = "center";
     ctx.font = "16px Verdana";
     ctx.fillStyle = "red";
+    ctx.lineWidth = 10;
 
     LimpiarCanvas();
   </script>
-
-
 
 </body>
 

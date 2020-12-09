@@ -113,15 +113,32 @@
               <div class="container">
                 <div class="row" style="padding: 0px;">
                   <div class="d-inline col-4">
-                    Cantidad:
+                    Amplitud:
                   </div>
                   <div class="input-group input-group-sm mb-3 col-8">
-                    <select name="nSelectEscala" class="custom-select" id="idSelectEscala" onchange="AjustarEstala();">
-                      <option value="12" selected>15 Digitos</option>
-                      <option value="20" >23 Digitos</option>
+                    <select name="nSelectAmplitud" class="custom-select" id="idSelectAmplitud" onchange="AjustarColor();">
+                      <option value="50" >50 px</option>
+                      <option value="60" >60 px</option>
+                      <option value="70" selected>70 px</option>
+                      <option value="80" >80 px</option>
+                      <option value="90" >90 px</option>
                     </select>
                   </div>
                 </div>
+
+                <div class="row" style="padding: 0px;">
+                  <div class="d-inline col-4">
+                    Color:
+                  </div>
+                  <div class="input-group input-group-sm mb-3 col-8">
+                    <select name="nSelectEscala" class="custom-select" id="idSelectColor" onchange="AjustarColor();">
+                      <option value="red" selected>Rojo</option>
+                      <option value="green" >Verde</option>
+                      <option value="blue" >Azul</option>
+                    </select>
+                  </div>
+                </div>
+
               </div>
             </div>
 
