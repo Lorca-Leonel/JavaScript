@@ -57,7 +57,7 @@
         <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Cadena a Procesar: </label>
           <div class="col-sm-3">
-            <input type="text" id="idCadena" value="" maxlength="27" class="form-control solo-numero-binario"
+            <input type="text" id="idCadena" value="0011010" maxlength="27" class="form-control solo-numero-binario"
               placeholder="Ej.: 0011010">
           </div>
           <div class="col-sm-1">
@@ -74,7 +74,7 @@
         <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Modo de Proceso: </label>
           <div class="col-sm-3">
-            <select name="nVoltaje" class="custom-select" id="idSelectTipoProceso">
+            <select name="nSelectTipoProceso" class="custom-select" id="idSelectTipoProceso" onchange="HabilitarBotonesYLimpiar();">
               <option value="Todo">Procesar de una vez</option>
               <option value="PasoAPaso">Paso a Paso</option>
             </select>
@@ -86,7 +86,7 @@
       </div>
     </div>
 
-    <div class="row mt-2" style="text-align: left;">
+    <div class="row mt-2 mb-2" style="text-align: left;">
       <div class="col-sm-12">
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('ASK');">ASK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('2ASK');">2-ASK</button>
@@ -97,23 +97,82 @@
       </div>
     </div>
 
-    <canvas id="c" width="900" height="260"></canvas>
+    <div class="row">
+      <div class="col-sm-12 mt-1">
+        <div class="form-row justify-content-center">
+          <label for="" class="col-sm-4 mt-1"><b>SEÑAL PORTADORA</b></label>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <canvas id="cPortadora" width="900" height="260"></canvas>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 mt-1">
+        <div class="form-row justify-content-center">
+          <label for="" class="col-sm-4 mt-2"><b>SEÑAL MODULADA</b> <strong id="idTipoModulacion"></strong></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <canvas id="c" width="900" height="260"></canvas>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="idPanelPasoAPaso">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-row justify-content-center">
+                  <button type="button" class="btn btn-primary mt-1 mr-4" onclick="ObtenerCodificacionPasoAPaso();">
+                    <i class="fas fa-play-circle" aria-hidden="true" title="Procesar"></i>
+                  </button>
+                  
+                  <button type="button" class="btn btn-primary mt-1" onclick="RestablecerPasoAPaso();">
+                    <i class="fas fa-undo-alt" aria-hidden="true" title="Volver a Empezar"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" id="idRowResultados">
+          </div>
+        </div>
+      </div>
+    </div>
+   
   </div>
 
-  <div id="divMisModales">
-  </div>
+  <div id="divMisModales"></div>
 
   <script id="scriptModales">
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
-        document.getElementById("divMisModales").innerHTML = xmlhttp.responseText;
+      document.getElementById("divMisModales").innerHTML = xmlhttp.responseText;
     }
     xmlhttp.open("GET", "Modales.html", true);
     xmlhttp.send();
   </script>
 
   <script>
+
+    var arrayUbicacionTexto = [
+      "65,15",
+      "160,15",
+      "250,15",
+      "340,15",
+      "430,15",
+      "520,15",
+      "610,15",
+      "700,15",
+      "790,15",
+      "895,15"
+    ]
+
+    //datos de señal modulada
     var c = document.getElementById("c");
     var ctx = c.getContext("2d");
 
@@ -128,11 +187,20 @@
     var frequence = Math.PI / 180 * 0.034;
     var phi = Math.PI / 180 * 0.00 * rad;
 
-    // text
     ctx.textAlign = "center";
     ctx.font = "16px Verdana";
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "black";
     ctx.lineWidth = 10;
+
+
+    //datos de señal portadora
+    var cPortadora = document.getElementById("cPortadora");
+    var ctxPortadora = cPortadora.getContext("2d");
+
+    ctxPortadora.textAlign = "center";
+    ctxPortadora.font = "16px Verdana";
+    ctxPortadora.fillStyle = "red";
+    ctxPortadora.lineWidth = 10;
 
     LimpiarCanvas();
   </script>
