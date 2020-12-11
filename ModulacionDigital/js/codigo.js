@@ -337,7 +337,10 @@ var ObtenerCodificacion = function (tipo) {
   $("#idDivImagen4PSK").addClass("d-none");
   $("#idDivImagen8QAM").removeClass("d-block");
   $("#idDivImagen8QAM").addClass("d-none");
+  $("#idDivImagenQPSK").removeClass("d-block");
+  $("#idDivImagenQPSK").addClass("d-none");
   
+
   if (cadena == "") {
     lanzarModalMensaje("Error!", "Se debe colocar una cadena binaria en el campo <b>Cadena a Procesar</b>.");
     $("#idCadena").focus();
@@ -350,7 +353,7 @@ var ObtenerCodificacion = function (tipo) {
       ColocarCadenaEnGrafica(divisiones);
 
       divisiones.forEach((point, index) => {
-        GraficarPortadora(index, amplitude, 0.139, 0, 3.14);
+        GraficarPortadora(index, amplitude, 0.13955, 0, 3.14);
       });
 
       if (tipoProceso == "Todo") {
@@ -384,7 +387,7 @@ var ObtenerCodificacion = function (tipo) {
       ColocarCadenaEnGrafica(divisiones);
 
       divisiones.forEach((point, index) => {
-        GraficarPortadora(index, amplitude, 0.139, 0, 3.14);
+        GraficarPortadora(index, amplitude, 0.13955, 0, 3.14);
       });
 
       if (tipoProceso == "Todo") {
@@ -401,7 +404,7 @@ var ObtenerCodificacion = function (tipo) {
       ColocarCadenaEnGrafica(divisiones);
 
       divisiones.forEach((point, index) => {
-        GraficarPortadora(index, amplitude, 0.139, 0, 3.14);
+        GraficarPortadora(index, amplitude, 0.13955, 0, 3.14);
       });
 
       if (tipoProceso == "Todo") {
@@ -427,15 +430,43 @@ var ObtenerCodificacion = function (tipo) {
       ColocarCadenaEnGrafica(divisiones);
 
       divisiones.forEach((point, index) => {
-        GraficarPortadora(index, amplitude, 0.279, 0, 3.14);
+        GraficarPortadora(index, amplitude, 0.2795, 0, 3.14);
       });
 
       $("#idDivImagen4PSK").removeClass("d-none");
       $("#idDivImagen4PSK").addClass("d-block");
-      
+
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {
           Obtener4PSK(point, index);
+        });
+      } else {
+        PrepararPasoAPaso(tipo);
+      }
+      break;
+
+    case 'QPSK':
+      var longitud = cadena.length;
+      if (longitud % 2 != 0) {
+        lanzarModalMensaje("Error!", "La cadena ingresada <b>debe ser PAR</b> para poder procesarla");
+        return false;
+      }
+
+      for (var i = 0; i < longitud; i += 2) {
+        divisiones.push(cadena.substr(i, 2));
+      }
+      ColocarCadenaEnGrafica(divisiones);
+
+      divisiones.forEach((point, index) => {
+        GraficarPortadora(index, amplitude, 0.06981317007977318, 0, 3.141592653589793);
+      });
+
+      $("#idDivImagenQPSK").removeClass("d-none");
+      $("#idDivImagenQPSK").addClass("d-block");
+
+      if (tipoProceso == "Todo") {
+        divisiones.forEach((point, index) => {
+          ObtenerQPSK(point, index);
         });
       } else {
         PrepararPasoAPaso(tipo);
@@ -455,7 +486,7 @@ var ObtenerCodificacion = function (tipo) {
       ColocarCadenaEnGrafica(divisiones);
 
       divisiones.forEach((point, index) => {
-        GraficarPortadora(index, amplitude / 2, 0.139, 0, 3.14);
+        GraficarPortadora(index, amplitude / 2, 0.13955, 0, 3.14);
       });
 
       $("#idDivImagen8QAM").removeClass("d-none");
@@ -478,7 +509,7 @@ var ObtenerCodificacion = function (tipo) {
 
 var ObtenerASK = function (point, index) {
   if (point == 1) {
-    initNew(index, amplitude, 0.139, 0, 3.14);
+    initNew(index, amplitude, 0.13955, 0, 3.14);
     ArmarMensajeParaPanel("Digito = 1; Se conserva la misma amplitud que la portadora");
   } else {
     initNew(index, 0, 0.139, 0, 3.14);
@@ -498,31 +529,30 @@ var Obtener2ASK = function (point, index) {
 
 var ObtenerFSK = function (point, index) {
   if (point == 1) {
-    initNew(index, amplitude, 0.279, 0, 3.14);
+    initNew(index, amplitude, 0.27955, 0, 3.14);
     ArmarMensajeParaPanel("Digito = 1; Aumenta la frecuencia con respecto a la portadora en este segmento");
   } else {
-    initNew(index, amplitude, 0.139, 0, 3.14);
+    initNew(index, amplitude, 0.13955, 0, 3.14);
     ArmarMensajeParaPanel("Digito = 0; Se conserva la misma frecuencia que en la portadora");
   }
 };
 
 var ObtenerPSK = function (point, index) {
   if (index == 0) {
-    initNew(index, amplitude, 0.139, 0, pulsoActual);
+    initNew(index, amplitude, 0.13955, 0, pulsoActual);
     ArmarMensajeParaPanel("Al ser el primer digito conserva la misma fase de la sinusoide de la portadora");
   } else {
     if (divisiones[index - 1] != point) {
-      ArmarMensajeParaPanel("El digito actual (" + point +") es distinto al anterior(" + divisiones[index - 1] + "). Se cambia de Fase Sinusoide.");
+      ArmarMensajeParaPanel("El digito actual (" + point + ") es distinto al anterior(" + divisiones[index - 1] + "). Se cambia de Fase Sinusoide.");
       if (pulsoActual == 3.14) {
         pulsoActual = 0;
       } else {
         pulsoActual = 3.14;
       }
-    }
-    else {
+    } else {
       ArmarMensajeParaPanel("El digito actual es igual al anterior. Se conserva la Fase Sinusoide.");
     }
-    initNew(index, amplitude, 0.139, 0, pulsoActual);
+    initNew(index, amplitude, 0.13955, 0, pulsoActual);
   }
 };
 
@@ -531,16 +561,33 @@ var Obtener4PSK = function (point, index) {
 
   switch (point) {
     case '00':
-      initNew(index, amplitude, 0.279, 0, 3.14);
+      initNew(index, amplitude, 0.2795, 0, 3.14);
       break;
     case '01':
-      initNew(index, amplitude, 0.279, 1.55, 3.14);
+      initNew(index, amplitude, 0.2795, 1.55, 3.14);
       break;
     case '10':
-      initNew(index, amplitude, 0.279, 0, 0);
+      initNew(index, amplitude, 0.2795, 0, 0);
       break;
     case '11':
-      initNew(index, amplitude, 0.279, 0, 1.57);
+      initNew(index, amplitude, 0.2795, 0, 1.57);
+      break;
+  }
+};
+
+var ObtenerQPSK = function (point, index) {
+  switch (point) {
+    case '00':
+      initNew(index, amplitude, 0.0698, 0, 0.785);
+      break;
+    case '01':
+      initNew(index, amplitude, 0.0698, 0, 2.356194490192345);
+      break;
+    case '10':
+      initNew(index, amplitude, 0.0698, 0, 5.495);
+      break;
+    case '11':
+      initNew(index, amplitude, 0.0698, 3.9269908169872414, 0);
       break;
   }
 };
@@ -549,28 +596,28 @@ var Obtener8QAM = function (point, index) {
 
   switch (point) {
     case '000':
-      initNew(index, amplitude / 2, 0.139, 0, 3.14);
+      initNew(index, amplitude / 2, 0.13955, 0, 3.14);
       break;
     case '001':
-      initNew(index, amplitude, 0.139, 0, 3.14);
+      initNew(index, amplitude, 0.13955, 0, 3.14);
       break;
     case '010':
-      initNew(index, amplitude / 2, 0.139, 1.55, 3.14);
+      initNew(index, amplitude / 2, 0.13955, 1.55, 3.14);
       break;
     case '011':
-      initNew(index, amplitude, 0.139, 1.55, 3.14);
+      initNew(index, amplitude, 0.13955, 1.55, 3.14);
       break;
     case '100':
-      initNew(index, amplitude / 2, 0.139, 0, 0);
+      initNew(index, amplitude / 2, 0.13955, 0, 0);
       break;
     case '101':
-      initNew(index, amplitude, 0.139, 0, 0);
+      initNew(index, amplitude, 0.13955, 0, 0);
       break;
     case '110':
-      initNew(index, amplitude / 2, 0.139, 0, 1.57);
+      initNew(index, amplitude / 2, 0.13955, 0, 1.57);
       break;
     case '111':
-      initNew(index, amplitude, 0.139, 0, 1.57);
+      initNew(index, amplitude, 0.13955, 0, 1.57);
       break;
   }
 
@@ -592,7 +639,7 @@ var PrepararPasoAPaso = function (tipo) {
   tipoPasoAPaso = tipo;
   indiceArrayDivisiones = 0;
   pulsoActual = 3.14;
-  $('#idRowResultados').html(""); 
+  $('#idRowResultados').html("");
   //let indiceArrayDivisiones = 0;
 }
 
@@ -634,7 +681,7 @@ var RestablecerPasoAPaso = function () {
 }
 
 var HabilitarBotonesYLimpiar = function () {
-  $('#idRowResultados').html(""); 
+  $('#idRowResultados').html("");
   var tipo = $("#idSelectTipoProceso").val();
   if (tipo == "PasoAPaso") {
     $('#idPanelPasoAPaso').collapse('show');
@@ -644,9 +691,9 @@ var HabilitarBotonesYLimpiar = function () {
   LimpiarCanvas();
 }
 
-var ArmarMensajeParaPanel = function(texto) {
+var ArmarMensajeParaPanel = function (texto) {
   var mensajeEnHtml = '<div class="col-12"><div class="alert alert-primary" role="alert">' + texto + '</div></div>';
-  $('#idRowResultados').html(mensajeEnHtml + $('#idRowResultados').html()); 
+  $('#idRowResultados').html(mensajeEnHtml + $('#idRowResultados').html());
 }
 /************************************************************************/
 /*******************       FIN CODIFICACIONES       *********************/

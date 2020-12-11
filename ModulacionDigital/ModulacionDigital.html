@@ -57,7 +57,7 @@
         <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Cadena a Procesar: </label>
           <div class="col-sm-3">
-            <input type="text" id="idCadena" value="0011010" maxlength="27" class="form-control solo-numero-binario"
+            <input type="text" id="idCadena" value="" maxlength="27" class="form-control solo-numero-binario"
               placeholder="Ej.: 0011010">
           </div>
           <div class="col-sm-1">
@@ -87,13 +87,19 @@
       </div>
     </div>
 
-    <div class="row mt-2 mb-2" style="text-align: left;">
-      <div class="col-sm-12">
+    <div class="row mt-2 mb-2" style="text-align: center;">
+      <div class="col-sm-6">
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('ASK');">ASK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('2ASK');">2-ASK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('FSK');">FSK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('PSK');">PSK</button>
+      </div>
+    </div>
+
+    <div class="row mt-2 mb-2" style="text-align: center;">
+      <div class="col-sm-6">
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('4PSK');">4-PSK</button>
+        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('QPSK');">QPSK</button>
         <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('8QAM');">8-QAM</button>
       </div>
     </div>
@@ -150,6 +156,11 @@
         <div id="idDivImagen4PSK" class="form-row justify-content-center d-none">
           <label class="col-12" for=""><strong>Diagrama de Constelacion</strong></label>
           <img src="images/4PSK_Constelacion.PNG" class="img-thumbnail" alt="Diagrama Constelación 4-PSK">
+        </div>
+
+        <div id="idDivImagenQPSK" class="form-row justify-content-center d-none">
+          <label class="col-12" for=""><strong>Diagrama de Constelacion</strong></label>
+          <img src="images/QPSK_Constelacion.png" class="img-thumbnail" alt="Diagrama Constelación QPSK">
         </div>
 
         <div id="idDivImagen8QAM" class="form-row justify-content-center d-none">
