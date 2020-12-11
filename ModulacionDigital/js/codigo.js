@@ -339,7 +339,7 @@ var ObtenerCodificacion = function (tipo) {
   $("#idDivImagen8QAM").addClass("d-none");
   $("#idDivImagenQPSK").removeClass("d-block");
   $("#idDivImagenQPSK").addClass("d-none");
-  
+
 
   if (cadena == "") {
     lanzarModalMensaje("Error!", "Se debe colocar una cadena binaria en el campo <b>Cadena a Procesar</b>.");
@@ -664,6 +664,10 @@ var ObtenerCodificacionPasoAPaso = function () {
 
     case '4PSK':
       Obtener4PSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+      break;
+
+    case 'QPSK':
+      ObtenerQPSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
       break;
 
     case '8QAM':
