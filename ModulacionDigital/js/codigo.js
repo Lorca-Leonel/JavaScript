@@ -692,6 +692,14 @@ var HabilitarBotonesYLimpiar = function () {
   } else {
     $('#idPanelPasoAPaso').collapse('hide');
   }
+
+  $("#idDivImagen4PSK").removeClass("d-block");
+  $("#idDivImagen4PSK").addClass("d-none");
+  $("#idDivImagen8QAM").removeClass("d-block");
+  $("#idDivImagen8QAM").addClass("d-none");
+  $("#idDivImagenQPSK").removeClass("d-block");
+  $("#idDivImagenQPSK").addClass("d-none");
+  
   LimpiarCanvas();
 }
 
