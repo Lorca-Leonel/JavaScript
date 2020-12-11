@@ -332,6 +332,12 @@ var ObtenerCodificacion = function (tipo) {
   divisiones = [];
   cadena = $("#idCadena").val();
   $("#idTipoModulacion").html("EN " + tipo);
+
+  $("#idDivImagen4PSK").removeClass("d-block");
+  $("#idDivImagen4PSK").addClass("d-none");
+  $("#idDivImagen8QAM").removeClass("d-block");
+  $("#idDivImagen8QAM").addClass("d-none");
+  
   if (cadena == "") {
     lanzarModalMensaje("Error!", "Se debe colocar una cadena binaria en el campo <b>Cadena a Procesar</b>.");
     $("#idCadena").focus();
@@ -424,6 +430,9 @@ var ObtenerCodificacion = function (tipo) {
         GraficarPortadora(index, amplitude, 0.279, 0, 3.14);
       });
 
+      $("#idDivImagen4PSK").removeClass("d-none");
+      $("#idDivImagen4PSK").addClass("d-block");
+      
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {
           Obtener4PSK(point, index);
@@ -448,6 +457,9 @@ var ObtenerCodificacion = function (tipo) {
       divisiones.forEach((point, index) => {
         GraficarPortadora(index, amplitude / 2, 0.139, 0, 3.14);
       });
+
+      $("#idDivImagen8QAM").removeClass("d-none");
+      $("#idDivImagen8QAM").addClass("d-block");
 
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {

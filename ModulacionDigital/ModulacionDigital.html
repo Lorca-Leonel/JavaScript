@@ -74,7 +74,8 @@
         <div class="form-row justify-content-left">
           <label for="" class="col-sm-2 mt-2">Modo de Proceso: </label>
           <div class="col-sm-3">
-            <select name="nSelectTipoProceso" class="custom-select" id="idSelectTipoProceso" onchange="HabilitarBotonesYLimpiar();">
+            <select name="nSelectTipoProceso" class="custom-select" id="idSelectTipoProceso"
+              onchange="HabilitarBotonesYLimpiar();">
               <option value="Todo">Procesar de una vez</option>
               <option value="PasoAPaso">Paso a Paso</option>
             </select>
@@ -126,24 +127,39 @@
         <div class="collapse multi-collapse" id="idPanelPasoAPaso">
           <div class="row">
             <div class="col-12">
-              <div class="form-row justify-content-center">
-                  <button type="button" class="btn btn-primary mt-1 mr-4" onclick="ObtenerCodificacionPasoAPaso();">
-                    <i class="fas fa-play-circle" aria-hidden="true" title="Procesar"></i>
-                  </button>
-                  
-                  <button type="button" class="btn btn-primary mt-1" onclick="RestablecerPasoAPaso();">
-                    <i class="fas fa-undo-alt" aria-hidden="true" title="Volver a Empezar"></i>
-                  </button>
+              <div class="form-row justify-content-left">
+                <button type="button" class="btn btn-primary mt-1 mr-4" onclick="ObtenerCodificacionPasoAPaso();">
+                  <i class="fas fa-play-circle" aria-hidden="true" title="Procesar"></i>
+                </button>
+
+                <button type="button" class="btn btn-primary mt-1" onclick="RestablecerPasoAPaso();">
+                  <i class="fas fa-undo-alt" aria-hidden="true" title="Volver a Empezar"></i>
+                </button>
               </div>
             </div>
           </div>
-
           <div class="row" id="idRowResultados">
           </div>
         </div>
       </div>
     </div>
-   
+
+    <div class="row">
+      <div class="col-12">
+
+        <div id="idDivImagen4PSK" class="form-row justify-content-center d-none">
+          <label class="col-12" for=""><strong>Diagrama de Constelacion</strong></label>
+          <img src="images/4PSK_Constelacion.PNG" class="img-thumbnail" alt="Diagrama Constelación 4-PSK">
+        </div>
+
+        <div id="idDivImagen8QAM" class="form-row justify-content-center d-none">
+          <label class="col-12" for=""><strong>Diagrama de Constelacion</strong></label>
+          <img src="images/8QAM_Constelacion.PNG" class="img-thumbnail" alt="Diagrama Constelación 8-QAM">
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <div id="divMisModales"></div>
@@ -158,7 +174,6 @@
   </script>
 
   <script>
-
     var arrayUbicacionTexto = [
       "65,15",
       "160,15",
