@@ -17,36 +17,12 @@ function AjustarColor() {
 }
 
 function GenerarBinarioAutomaticamente() {
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val(i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
-  i = Math.floor((Math.random() * 2));
-  $("#idCadena").val($("#idCadena").val() + i);
+  var cadenaAleatoria = "";
+  for (var i = 0; i < 27; i++) {
+    r = Math.floor((Math.random() * 2));
+    cadenaAleatoria = cadenaAleatoria + r;
+  }
+  $("#idCadena").val(cadenaAleatoria);
 
   LimpiarCanvas();
 }
@@ -96,24 +72,7 @@ function drawCoords(amplitude, frequence, a) {
   ctx.lineTo(830, 240);
 
   ctx.stroke();
-  /*
-  for (var x = 0; x < cw - 2 * coordsOffset; x++) {
-    if (x % 90 == 0) {
-
-      //console.log(x + coordsOffset, (ch / 2) - 100);
-      //console.log(x + coordsOffset, (ch / 2) + 100);
-      
-      ctx.moveTo(x + coordsOffset, (ch / 2) - 100);
-      ctx.lineTo(x + coordsOffset, (ch / 2) + 100);
-      ctx.stroke();
-      ctx.fillText((~~(a * 100)) / 100, x + coordsOffset + 50, ch / 2 - 115);
-      
-      console.log((~~(a * 100)) / 100,",", x + coordsOffset ,",",ch / 2 - 115)
-    }
-    a += frequence;
-    //console.log(a);
-  }
-  */
+  
 }
 
 function drawCoordsPortadora(amplitude, frequence, a) {
@@ -160,81 +119,24 @@ function drawCoordsPortadora(amplitude, frequence, a) {
   ctxPortadora.lineTo(830, 240);
 
   ctxPortadora.stroke();
-  /*
-  for (var x = 0; x < cw - 2 * coordsOffset; x++) {
-    console.log("kiko");
-    if (x % 90 == 0) {
 
-      console.log(x + coordsOffset, (ch / 2) - 100);
-      console.log(x + coordsOffset, (ch / 2) + 100);
-      
-      ctx.moveTo(x + coordsOffset, (ch / 2) - 100);
-      ctx.lineTo(x + coordsOffset, (ch / 2) + 100);
-      ctx.stroke();
-      ctx.fillText((~~(a * 100)) / 100, x + coordsOffset + 50, ch / 2 - 115);
-
-      console.log("ubicacion: " , (~~(a * 100)) / 100, x + coordsOffset, ch / 2 - 115)
-    }
-    a += frequence;
-  }
-  */
-}
-/*
-function drawSin(amplitude, frequence, a, phi) {
-  //phi = 3.14;
-  console.log("ampli:" + amplitude + " - frecue:" + frequence + " - a:" + a + " - phi:" + phi);
-  console.log("coordsOffset:" + coordsOffset + " - cw:" + cw);
-  // SIN					
-  a = 0;
-  ctx.beginPath();
-  ctx.moveTo(coordsOffset, ch / 2);
-  for (var x = coordsOffset; x < cw - coordsOffset; x++) {
-    var y = Math.sin(a + phi) * amplitude + ch / 2;
-    a += frequence;
-    ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = "red";
-  ctx.stroke();
 }
 
-function drawCoss(amplitude, frequence, a, phi) {
-  // COS
-  ctx.beginPath();
-  ctx.moveTo(coordsOffset, ch / 2 + amplitude);
-  for (var x = coordsOffset; x < cw - coordsOffset; x++) {
-    var y = Math.cos(a + phi) * amplitude + ch / 2;
-    a += frequence;
-    ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = "yellow";
-  ctx.stroke();
-}
-*/
-/*
-function init(amplitude, frequence, a, phi) {
-  console.log("borrados: " + cw + "-" + ch);
-  ctx.clearRect(0, 0, cw, ch);
-  drawCoords(amplitude, frequence, a, phi);
-
-  //drawSin(amplitude, frequence, a, phi);
-  //drawCos(amplitude, frequence, a, phi);
-
-  document.querySelector(".amplitude.output").innerHTML = amplitude;
-  document.querySelector(".frequence.output").innerHTML = parseInt(frequence * 1000) / 1000;
-  document.querySelector(".faseInicial.output").innerHTML = phi.toFixed(2);
-}
-*/
 /************************************************************************/
 /*******************       CODIFICACIONES       *************************/
 /************************************************************************/
 
 var LimpiarCanvas = function () {
-  // limpieza señal modulada
+  $("#idBDiagramaResultado").html("-");
+  $("#idImageConstelacion").attr("src","images/white.png");
+  $("#idImageEspectroFrecuencia").attr("src","images/white.png");
+  
+  
   c.width = c.width;
   c = document.getElementById("c");
   ctx = c.getContext("2d");
 
-  cw = c.width = 900,
+  cw = c.width = 850,
     cx = cw / 2;
   ch = c.height = 260,
     cy = ch / 2;
@@ -267,22 +169,13 @@ var LimpiarCanvas = function () {
   drawCoordsPortadora(amplitude, frequence, 0, phi);
 }
 
-function initNew(indice, amplitude, frequence, a, phi) {
-  //LimpiarCanvas();
-  //c.width = c.width;
-  //ctx.clearRect(0, 0, cw, ch);
-  //drawCoords(100, 0.017453292519943295, 0);
-  //ctx.clearRect(0, 0, cw, ch);
-  //drawCoords(amplitude, frequence, a, phi);
-  drawSinNew(indice, amplitude, frequence, a, phi);
+function initNew(indice, amplitude, frequence, a, phim, color = $("#idSelectColor").val()) {
+  drawSinNew(indice, amplitude, frequence, a, phim, color);
 }
 
-function drawSinNew(indice, amplitude, frequence, a, phi) {
-  //console.log("ampli:" + amplitude + " - frecue:" + frequence + " - a:" + a + " - phi:" + phi);
-  //console.log("coordsOffset:" + coordsOffset + " - cw:" + cw);
+function drawSinNew(indice, amplitude, frequence, a, phi, color) {
   ctx.lineWidth = 3;
   ctx.beginPath();
-  //ctx.moveTo(coordsOffset, ch / 2);
   var inicio = 90 * indice + 20;
   var fin = inicio + 91;
   for (var x = inicio; x < fin; x++) { // 20 - 111 // 110 - 201 /// 200 - 291 /// 290 - 381 // 380 - 471 // 
@@ -290,19 +183,15 @@ function drawSinNew(indice, amplitude, frequence, a, phi) {
     a += frequence;
     ctx.lineTo(x, y);
   }
-
-  ctx.strokeStyle = $("#idSelectColor").val();
+  ctx.strokeStyle = color;
   ctx.stroke();
-  //alert("tramo 1");  
 }
 
 
 function drawSinPortadora(indice, amplitude, frequence, a, phi) {
-  //console.log("ampli:" + amplitude + " - frecue:" + frequence + " - a:" + a + " - phi:" + phi);
-  //console.log("coordsOffset:" + coordsOffset + " - cw:" + cw);
   ctxPortadora.lineWidth = 3;
   ctxPortadora.beginPath();
-  //ctx.moveTo(coordsOffset, ch / 2);
+
   var inicio = 90 * indice + 20;
   var fin = inicio + 91;
   for (var x = inicio; x < fin; x++) { // 20 - 111 // 110 - 201 /// 200 - 291 /// 290 - 381 // 380 - 471 // 
@@ -313,7 +202,6 @@ function drawSinPortadora(indice, amplitude, frequence, a, phi) {
 
   ctxPortadora.strokeStyle = $("#idSelectColor").val();
   ctxPortadora.stroke();
-  //alert("tramo 1");  
 }
 
 let cadena;
@@ -322,24 +210,16 @@ let indiceArrayDivisiones = 0;
 let divisiones = [];
 let tipoPasoAPaso = "";
 let pulsoActual = 3.14;
+let colorCambioPSK = "green";
 
 var ObtenerCodificacion = function (tipo) {
-
   LimpiarCanvas();
   indiceArrayDivisiones = 0;
-  //ColocarCadenaEnGrafica();
+
   amplitude = $("#idSelectAmplitud").val();
   divisiones = [];
   cadena = $("#idCadena").val();
   $("#idTipoModulacion").html("EN " + tipo);
-
-  $("#idDivImagen4PSK").removeClass("d-block");
-  $("#idDivImagen4PSK").addClass("d-none");
-  $("#idDivImagen8QAM").removeClass("d-block");
-  $("#idDivImagen8QAM").addClass("d-none");
-  $("#idDivImagenQPSK").removeClass("d-block");
-  $("#idDivImagenQPSK").addClass("d-none");
-
 
   if (cadena == "") {
     lanzarModalMensaje("Error!", "Se debe colocar una cadena binaria en el campo <b>Cadena a Procesar</b>.");
@@ -347,8 +227,18 @@ var ObtenerCodificacion = function (tipo) {
     return;
   }
   var tipoProceso = $("#idSelectTipoProceso").val();
+  GraficarEspectroFrecuencia();
   switch (tipo) {
     case 'ASK':
+      $("#idBDiagramaResultado").html("SEÑAL RESULTANTE");
+      $("#idImageConstelacion").attr("src","images/SenalResultante/ask.png");
+      var longitud = cadena.length;
+      if (longitud > 9)
+      {
+        cadena = cadena.substring(0, 9);
+        $("#idCadena").val(cadena);
+      }
+
       divisiones = $("#idCadena").val().split("");
       ColocarCadenaEnGrafica(divisiones);
 
@@ -366,6 +256,15 @@ var ObtenerCodificacion = function (tipo) {
       break;
 
     case '2ASK':
+      $("#idBDiagramaResultado").html("SEÑAL RESULTANTE");
+      $("#idImageConstelacion").attr("src","images/SenalResultante/ask.png");
+      var longitud = cadena.length;
+      if (longitud > 9)
+      {
+        cadena = cadena.substring(0, 9);
+        $("#idCadena").val(cadena);
+      }
+
       divisiones = $("#idCadena").val().split("");
       ColocarCadenaEnGrafica(divisiones);
 
@@ -383,6 +282,15 @@ var ObtenerCodificacion = function (tipo) {
       break;
 
     case 'FSK':
+      $("#idBDiagramaResultado").html("SEÑAL RESULTANTE");
+      $("#idImageConstelacion").attr("src","images/SenalResultante/fsk.png");
+      var longitud = cadena.length;
+      if (longitud > 9)
+      {
+        cadena = cadena.substring(0, 9);
+        $("#idCadena").val(cadena);
+      }
+
       divisiones = $("#idCadena").val().split("");
       ColocarCadenaEnGrafica(divisiones);
 
@@ -400,6 +308,15 @@ var ObtenerCodificacion = function (tipo) {
       break;
 
     case 'PSK':
+      $("#idBDiagramaResultado").html("SEÑAL RESULTANTE");
+      $("#idImageConstelacion").attr("src","images/SenalResultante/psk.png");
+      var longitud = cadena.length;
+      if (longitud > 9)
+      {
+        cadena = cadena.substring(0, 9);
+        $("#idCadena").val(cadena);
+      }
+
       divisiones = $("#idCadena").val().split("");
       ColocarCadenaEnGrafica(divisiones);
 
@@ -417,9 +334,15 @@ var ObtenerCodificacion = function (tipo) {
       break;
 
     case '4PSK':
-      //initNew(index, amplitude, 0.279, 0, 3.14)
+      $("#idBDiagramaResultado").html("DIAGRAMA DE CONSTELACIÓN");
       var longitud = cadena.length;
-      if (longitud % 2 != 0) {
+      if (longitud > 18)
+      {
+        cadena = cadena.substring(0, 18);
+        $("#idCadena").val(cadena);
+      }
+
+      if (cadena.length % 2 != 0) {
         lanzarModalMensaje("Error!", "La cadena ingresada <b>debe ser PAR</b> para poder procesarla");
         return false;
       }
@@ -433,21 +356,26 @@ var ObtenerCodificacion = function (tipo) {
         GraficarPortadora(index, amplitude, 0.2795, 0, 3.14);
       });
 
-      $("#idDivImagen4PSK").removeClass("d-none");
-      $("#idDivImagen4PSK").addClass("d-block");
-
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {
           Obtener4PSK(point, index);
         });
+        $("#idImageConstelacion").attr("src","images/Constalaciones/4PSK/all.png");
       } else {
         PrepararPasoAPaso(tipo);
       }
       break;
 
     case 'QPSK':
-      var longitud = cadena.length;
-      if (longitud % 2 != 0) {
+      $("#idBDiagramaResultado").html("DIAGRAMA DE CONSTELACIÓN");
+      var longitud = cadena.length;  
+      if (longitud > 18)
+      {
+        cadena = cadena.substring(0, 18);
+        $("#idCadena").val(cadena);
+      }
+      
+      if (cadena.length % 2 != 0) {
         lanzarModalMensaje("Error!", "La cadena ingresada <b>debe ser PAR</b> para poder procesarla");
         return false;
       }
@@ -461,19 +389,19 @@ var ObtenerCodificacion = function (tipo) {
         GraficarPortadora(index, amplitude, 0.06981317007977318, 0, 3.141592653589793);
       });
 
-      $("#idDivImagenQPSK").removeClass("d-none");
-      $("#idDivImagenQPSK").addClass("d-block");
-
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {
           ObtenerQPSK(point, index);
         });
+        $("#idImageConstelacion").attr("src","images/Constalaciones/QPSK/all.png");
       } else {
         PrepararPasoAPaso(tipo);
       }
       break;
 
     case '8QAM':
+      GraficarEspectroFrecuencia("menor");
+      $("#idBDiagramaResultado").html("DIAGRAMA DE CONSTELACIÓN");
       var longitud = cadena.length;
       if (longitud % 3 != 0) {
         lanzarModalMensaje("Error!", "La candena ingresada <b>debe ser MULTIPLO DE 3</b> para poder procesarla");
@@ -489,13 +417,11 @@ var ObtenerCodificacion = function (tipo) {
         GraficarPortadora(index, amplitude / 2, 0.13955, 0, 3.14);
       });
 
-      $("#idDivImagen8QAM").removeClass("d-none");
-      $("#idDivImagen8QAM").addClass("d-block");
-
       if (tipoProceso == "Todo") {
         divisiones.forEach((point, index) => {
           Obtener8QAM(point, index);
         });
+        $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/all.png");
       } else {
         PrepararPasoAPaso(tipo);
       }
@@ -508,69 +434,82 @@ var ObtenerCodificacion = function (tipo) {
 };
 
 var ObtenerASK = function (point, index) {
-  if (point == 1) {
-    initNew(index, amplitude, 0.13955, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 1; Se conserva la misma amplitud que la portadora");
-  } else {
-    initNew(index, 0, 0.139, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 0; La Amplitud de la señal modulada en este segmento es cero");
+  if (point != undefined)
+  {
+    if (point == 1) {
+      initNew(index, amplitude, 0.13955, 0, 3.14, 'red');
+    } else {
+      initNew(index, 0, 0.139, 0, 3.14, 'black');
+    }
   }
+  
 };
 
 var Obtener2ASK = function (point, index) {
-  if (point == 1) {
-    initNew(index, amplitude, 0.279, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 1; Se conserva la misma amplitud que la portadora");
-  } else {
-    initNew(index, 0, 0.279, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 0; La Amplitud de la señal modulada en este segmento es cero");
+  if (point != undefined)
+  {
+    if (point == 1) {
+      initNew(index, amplitude, 0.279, 0, 3.14, 'red');
+    } else {
+      initNew(index, 0, 0.279, 0, 3.14, 'black');
+    }
   }
+  
 };
 
 var ObtenerFSK = function (point, index) {
-  if (point == 1) {
-    initNew(index, amplitude, 0.27955, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 1; Aumenta la frecuencia con respecto a la portadora en este segmento");
-  } else {
-    initNew(index, amplitude, 0.13955, 0, 3.14);
-    ArmarMensajeParaPanel("Digito = 0; Se conserva la misma frecuencia que en la portadora");
+  if (point != undefined) {
+    if (point == 1) {
+      initNew(index, amplitude, 0.27955, 0, 3.14, 'blue');
+    } else {
+      initNew(index, amplitude, 0.13955, 0, 3.14, 'red');
+    }
   }
+  
 };
 
 var ObtenerPSK = function (point, index) {
-  if (index == 0) {
-    initNew(index, amplitude, 0.13955, 0, pulsoActual);
-    ArmarMensajeParaPanel("Al ser el primer digito conserva la misma fase de la sinusoide de la portadora");
-  } else {
-    if (divisiones[index - 1] != point) {
-      ArmarMensajeParaPanel("El digito actual (" + point + ") es distinto al anterior(" + divisiones[index - 1] + "). Se cambia de Fase Sinusoide.");
-      if (pulsoActual == 3.14) {
-        pulsoActual = 0;
-      } else {
-        pulsoActual = 3.14;
-      }
+  if (point != undefined) {
+    if (index == 0) {
+      initNew(index, amplitude, 0.13955, 0, pulsoActual, colorCambioPSK);
     } else {
-      ArmarMensajeParaPanel("El digito actual es igual al anterior. Se conserva la Fase Sinusoide.");
-    }
-    initNew(index, amplitude, 0.13955, 0, pulsoActual);
+      if (divisiones[index - 1] != point) {
+        if (pulsoActual == 3.14) {
+          pulsoActual = 0;
+        } else {
+          pulsoActual = 3.14;
+        }
+        if (colorCambioPSK == "green") {
+          colorCambioPSK = "blue";
+        }
+        else {
+          colorCambioPSK = "green";
+        }
+  
+      } else {
+      }
+      initNew(index, amplitude, 0.13955, 0, pulsoActual, colorCambioPSK);
+    } 
   }
 };
 
 var Obtener4PSK = function (point, index) {
-  //  var pulsoActual = 3.14;
-
   switch (point) {
     case '00':
-      initNew(index, amplitude, 0.2795, 0, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/4PSK/00.png");
+      initNew(index, amplitude, 0.2795, 0, 3.14, 'green');
       break;
     case '01':
-      initNew(index, amplitude, 0.2795, 1.55, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/4PSK/01.png");
+      initNew(index, amplitude, 0.2795, 1.55, 3.14, 'blue');
       break;
     case '10':
-      initNew(index, amplitude, 0.2795, 0, 0);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/4PSK/10.png");
+      initNew(index, amplitude, 0.2795, 0, 0, 'red');
       break;
     case '11':
-      initNew(index, amplitude, 0.2795, 0, 1.57);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/4PSK/11.png");
+      initNew(index, amplitude, 0.2795, 0, 1.57, 'brown');
       break;
   }
 };
@@ -578,49 +517,59 @@ var Obtener4PSK = function (point, index) {
 var ObtenerQPSK = function (point, index) {
   switch (point) {
     case '00':
-      initNew(index, amplitude, 0.0698, 0, 0.785);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/QPSK/00.png");
+      initNew(index, amplitude, 0.0698, 3.9269908169872414, 0, 'green');
       break;
     case '01':
-      initNew(index, amplitude, 0.0698, 0, 2.356194490192345);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/QPSK/01.png");
+      initNew(index, amplitude, 0.0698, 0, 0.785, 'blue');
       break;
     case '10':
-      initNew(index, amplitude, 0.0698, 0, 5.495);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/QPSK/10.png");
+      initNew(index, amplitude, 0.0698, 0, 5.495, 'red');
       break;
     case '11':
-      initNew(index, amplitude, 0.0698, 3.9269908169872414, 0);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/QPSK/11.png");
+      initNew(index, amplitude, 0.0698, 0, 2.356194490192345, 'brown');
       break;
   }
 };
 
 var Obtener8QAM = function (point, index) {
-
   switch (point) {
     case '000':
-      initNew(index, amplitude / 2, 0.13955, 0, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/000.png");
+      initNew(index, amplitude / 2, 0.13955, 0, 3.14, 'green');
       break;
     case '001':
-      initNew(index, amplitude, 0.13955, 0, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/001.png");
+      initNew(index, amplitude, 0.13955, 0, 3.14, 'blue');
       break;
     case '010':
-      initNew(index, amplitude / 2, 0.13955, 1.55, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/010.png");
+      initNew(index, amplitude / 2, 0.13955, 1.55, 3.14, 'red');
       break;
     case '011':
-      initNew(index, amplitude, 0.13955, 1.55, 3.14);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/011.png");
+      initNew(index, amplitude, 0.13955, 1.55, 3.14, 'brown');
       break;
     case '100':
-      initNew(index, amplitude / 2, 0.13955, 0, 0);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/100.png");
+      initNew(index, amplitude / 2, 0.13955, 0, 0, 'gray');
       break;
     case '101':
-      initNew(index, amplitude, 0.13955, 0, 0);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/101.png");
+      initNew(index, amplitude, 0.13955, 0, 0, 'orange');
       break;
     case '110':
-      initNew(index, amplitude / 2, 0.13955, 0, 1.57);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/110.png");
+      initNew(index, amplitude / 2, 0.13955, 0, 1.57, 'black');
       break;
     case '111':
-      initNew(index, amplitude, 0.13955, 0, 1.57);
+      $("#idImageConstelacion").attr("src","images/Constalaciones/8QAM/111.png");
+      initNew(index, amplitude, 0.13955, 0, 1.57, 'purple');
       break;
   }
-
 };
 
 var ColocarCadenaEnGrafica = function (arrayDivisiones) {
@@ -635,12 +584,15 @@ var GraficarPortadora = function (indice, amplitude, frequence, a, phi) {
   drawSinPortadora(indice, amplitude, frequence, a, phi);
 }
 
+var GraficarEspectroFrecuencia = function (tamano = "mayor") {
+  $("#idImageEspectroFrecuencia").attr("src", "images/Espectros/" + tamano + ".png");
+}
+
 var PrepararPasoAPaso = function (tipo) {
   tipoPasoAPaso = tipo;
   indiceArrayDivisiones = 0;
   pulsoActual = 3.14;
   $('#idRowResultados').html("");
-  //let indiceArrayDivisiones = 0;
 }
 
 var ObtenerCodificacionPasoAPaso = function () {
@@ -693,20 +645,9 @@ var HabilitarBotonesYLimpiar = function () {
     $('#idPanelPasoAPaso').collapse('hide');
   }
 
-  $("#idDivImagen4PSK").removeClass("d-block");
-  $("#idDivImagen4PSK").addClass("d-none");
-  $("#idDivImagen8QAM").removeClass("d-block");
-  $("#idDivImagen8QAM").addClass("d-none");
-  $("#idDivImagenQPSK").removeClass("d-block");
-  $("#idDivImagenQPSK").addClass("d-none");
-  
   LimpiarCanvas();
 }
 
-var ArmarMensajeParaPanel = function (texto) {
-  var mensajeEnHtml = '<div class="col-12"><div class="alert alert-primary" role="alert">' + texto + '</div></div>';
-  $('#idRowResultados').html(mensajeEnHtml + $('#idRowResultados').html());
-}
 /************************************************************************/
 /*******************       FIN CODIFICACIONES       *********************/
 /************************************************************************/
