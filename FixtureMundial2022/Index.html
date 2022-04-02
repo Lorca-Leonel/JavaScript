@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+
+    <style type="text/css">
+        /*
+        .columna-ajustada
+        {
+            vertical-align: middle !important;
+            text-align:center !important;
+            padding: 2px !important;
+        }
+        .bg-celda-burlywood
+        {
+            background-color: burlywood !important;
+        }
+        .bg-celda-crimson
+        {
+            background-color: crimson !important;
+        }
+        .bg-celda-darkgreen
+        {
+            background-color: darkgreen !important;
+        }
+        .bg-celda-deepskyblue
+        {
+            background-color: deepskyblue !important;
+        }
+        .bg-celda-mediumseagreen
+        {
+            background-color: mediumseagreen !important;
+        }
+        .bg-celda-yellow
+        {
+            background-color: yellow !important;
+        }
+        .bg-celda-marron
+        {
+            background-color: rgb(155, 122, 91) !important;
+        }
+        .background-color-textArea
+        {
+            background-color: rgb(69, 184, 16) !important;
+        }
+        */
+    </style>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <script src="jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script language="JavaScript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script language="JavaScript" src="js/codigo.js"></script>
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <a class="navbar-brand" href="#">FIXTURE MUNDIAL QATAR 2022</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href=""><i class="fa fa-home"></i>  Inicio <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" onclick="lanzarModalAlumno();"> <i class="fa fa-user"></i> Autor <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="mr-5 ml-5">
+        <div class="row">
+            <div class="col-7">
+                <div class="row" id="idDivColumnForGroups">
+                </div>
+            </div>
+            <div class="col-6">
+                col_2
+            </div>
+        </div>
+
+    </div>
+        
+    <div id="divMisModales">
+        <style type="text/css">
+            .xcbo_BuscarAlumno_styleInputSmall
+            {
+                text-align:left !important;
+                height: 25px !important;
+                padding-top: 1px !important;
+                padding-bottom: 1px !important;
+                margin-bottom: 0px !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+        </style>
+
+        <div class="modal fade bd-example-modal" id="idModalBuscarAlumnoPorDNI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none" aria-modal="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Datos Alumno</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 2%;">
+                        <div class="container">
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Universidad:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-8">
+                                    <input type="text" value="Universidad Tecnológica Nacional" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Facultad:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-8">
+                                    <input type="text" value="Facultad Regional Tucumán" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Carrera:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-8">
+                                    <input type="text" value="Ingenieria en Sistemas de Información" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Materia:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-8">
+                                    <input type="text" value="Comunicaciones" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Comisión:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-4">
+                                    <input type="text" value="3K2" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Año:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-4">
+                                    <input type="text" value="2019" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Nombre:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-8">
+                                    <input type="text" value="ARCE JUAN EDUARDO" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 0px;">
+                                <div class="d-inline col-4">
+                                    Legajo:
+                                </div>
+                                <div class="input-group input-group-sm mb-3 col-4">
+                                    <input type="text" value="31428" disabled class="form-control solo-numero large xcbo_BuscarAlumno_styleInputSmall" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var AllGroups = {};
+
+        $(document).ready(function (){
+            LoadGroups();
+            //ShowTeams();
+        });
+
+        var LoadGroups = function() {
+            $.get('data/teams.json')
+                .done(function( data ) {
+                    AllGroups = data;
+                    ShowTeams();
+                });
+        }
+
+        var ShowTeams = function() {
+            var html = "";
+            var groupBody = "";
+
+            AllGroups.Groups.forEach(element => {
+                groupBody +="<div class='col-3 border border-primary'>" + 
+                                "<div class='row border'>" + element.Name + "</div>" +
+                                "<div class='row'>" + element.Teams[0].Name + "</div>" +
+                                "<div class='row'>" + element.Teams[1].Name + "</div>" +
+                                "<div class='row'>" + element.Teams[2].Name + "</div>" +
+                                "<div class='row'>" + element.Teams[3].Name + "</div>" +
+                            "</div>";
+            });
+
+            $("#idDivColumnForGroups").html(groupBody);
+        }
+
+    </script>
+    </body>
+</html>
