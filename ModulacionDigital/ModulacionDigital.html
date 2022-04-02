@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-light">
+<body class="bg-light" style="zoom: 80%">
   <nav class="navbar navbar-expand-sm navbar-light bg-primary">
     <a class="navbar-brand" href="#">Modulación Digital</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -51,13 +51,14 @@
     </div>
   </nav>
 
-  <div class="container  col-sm-12 bg-light text-dark">
-    <div class="row">
-      <div class="col-sm-12 mt-1">
-        <div class="form-row justify-content-left">
+  <div class="container col-sm-12 bg-light">
+
+    <div class="row mb-2 mt-2">
+      <div class="col-12">
+        <div class="form-row justify-content-center">
           <label for="" class="col-sm-2 mt-2">Cadena a Procesar: </label>
           <div class="col-sm-3">
-            <input type="text" id="idCadena" value="" maxlength="27" class="form-control solo-numero-binario"
+            <input type="text" id="idCadena" value="000001010011100101110111000" maxlength="27" class="form-control solo-numero-binario"
               placeholder="Ej.: 0011010">
           </div>
           <div class="col-sm-1">
@@ -69,9 +70,9 @@
       </div>
     </div>
 
-    <div class="row mt-2">
-      <div class="col-sm-12">
-        <div class="form-row justify-content-left">
+    <div class="row mb-2">
+      <div class="col-12">
+        <div class="form-row justify-content-center">
           <label for="" class="col-sm-2 mt-2">Modo de Proceso: </label>
           <div class="col-sm-3">
             <select name="nSelectTipoProceso" class="custom-select" id="idSelectTipoProceso"
@@ -87,45 +88,95 @@
       </div>
     </div>
 
-    <div class="row mt-2 mb-2" style="text-align: center;">
-      <div class="col-sm-6">
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('ASK');">ASK</button>
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('2ASK');">2-ASK</button>
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('FSK');">FSK</button>
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('PSK');">PSK</button>
-      </div>
-    </div>
-
-    <div class="row mt-2 mb-2" style="text-align: center;">
-      <div class="col-sm-6">
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('4PSK');">4-PSK</button>
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('QPSK');">QPSK</button>
-        <button type="button" class="btn btn-outline-primary" onclick="ObtenerCodificacion('8QAM');">8-QAM</button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 mt-1">
-        <div class="form-row justify-content-left">
-          <label for="" class="col-sm-4 mt-1"><b>SEÑAL PORTADORA</b></label>
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="form-row justify-content-center">
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('ASK');">ASK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('2ASK');">2-ASK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('FSK');">FSK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('PSK');">PSK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('4PSK');">4-PSK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('QPSK');">QPSK</button>
+          <button type="button" class="btn btn-outline-primary mr-2" onclick="ObtenerCodificacion('8QAM');">8-QAM</button>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <canvas id="cPortadora" width="900" height="260"></canvas>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 mt-1">
-        <div class="form-row justify-content-left">
-          <label for="" class="col-sm-4 mt-2"><b>SEÑAL MODULADA</b> <strong id="idTipoModulacion"></strong></label>
+    <div class="row mb-3">
+      
+      <div class="col-12 col-lg-8 p-1">
+        <div class="border border-primary">
+          <div class="row">
+            <div class="col">
+              <div class="form-row justify-content-center">
+                <label for="" class="ml-4"><b>SEÑAL PORTADORA</b></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <canvas id="cPortadora" width="830" height="260"></canvas>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <div class="col-12 col-lg-4 p-1">
+        <div class="border border-primary h-100">
+          <div class="row">
+            <div class="col">
+              <div class="form-row justify-content-center">
+                <label for="" class="ml-4"><b>ESPECTRO DE FRECUENCIA</b></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <img  id="idImageEspectroFrecuencia" alt="" width="400" height="170">
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
-    <div class="row">
-      <canvas id="c" width="900" height="260"></canvas>
+
+    <div class="row mb-3">
+      
+      <div class="col-12 col-lg-8 p-1">
+        <div class="border border-primary">
+          <div class="row">
+            <div class="col">
+              <div class="form-row justify-content-center">
+                <label for="" class="ml-4"><b>SEÑAL MODULADA</b></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <canvas id="c" width="830" height="260"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-lg-4 p-1">
+        <div class="border border-primary">
+          <div class="row">
+            <div class="col">
+              <div class="form-row justify-content-center">
+                <label for="" class="ml-4"><b id="idBDiagramaResultado">_</b></label>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 text-center">
+              <img  id="idImageConstelacion" alt="" width="400" height="260">
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
     <div class="row">
@@ -150,6 +201,7 @@
       </div>
     </div>
 
+    <!--
     <div class="row">
       <div class="col-12">
 
@@ -170,7 +222,7 @@
 
       </div>
     </div>
-
+    -->
   </div>
 
   <div id="divMisModales"></div>
@@ -202,7 +254,7 @@
     var c = document.getElementById("c");
     var ctx = c.getContext("2d");
 
-    var cw = c.width = 900,
+    var cw = c.width = 830,
       cx = cw / 2;
     var ch = c.height = 260,
       cy = ch / 2;
