@@ -212,14 +212,19 @@
             AllGroups.Groups.forEach(element => {
                 groupBody +="<div class='col-3 border border-primary'>" + 
                                 "<div class='row border'>" + element.Name + "</div>" +
-                                "<div class='row'>" + element.Teams[0].Name + "</div>" +
-                                "<div class='row'>" + element.Teams[1].Name + "</div>" +
-                                "<div class='row'>" + element.Teams[2].Name + "</div>" +
-                                "<div class='row'>" + element.Teams[3].Name + "</div>" +
+                                "<div class='row' id='G" + element.Id +"_T" + element.Teams[0].Id + "' onClick='SelectTeam(this, `" + element.Id + "`, " + element.Teams[0].Id + ")'>" + element.Teams[0].Name + "</div>" +
+                                "<div class='row' id='G" + element.Id +"_T" + element.Teams[1].Id + "' onClick='SelectTeam(this, `" + element.Id + "`, " + element.Teams[1].Id + ")'>" + element.Teams[1].Name + "</div>" +
+                                "<div class='row' id='G" + element.Id +"_T" + element.Teams[2].Id + "' onClick='SelectTeam(this, `" + element.Id + "`, " + element.Teams[2].Id + ")'>" + element.Teams[2].Name + "</div>" +
+                                "<div class='row' id='G" + element.Id +"_T" + element.Teams[3].Id + "' onClick='SelectTeam(this, `" + element.Id + "`, " + element.Teams[3].Id + ")'>" + element.Teams[3].Name + "</div>" +
                             "</div>";
             });
 
             $("#idDivColumnForGroups").html(groupBody);
+        }
+
+        var SelectTeam = function(control, selectedGroup, selectedTeam) {
+            console.log(control.id);
+            console.log(selectedGroup, selectedTeam);
         }
 
     </script>
