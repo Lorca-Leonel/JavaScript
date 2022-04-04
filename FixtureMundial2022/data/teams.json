@@ -1,261 +1,165 @@
 {
-    "Groups": 
+    "Teams": 
     [
         {
-            "Id": "A",
-            "Name": "GROUP A",
-            "Color": "red",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 1,
-                    "Name": "QATAR",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 2,
-                    "Name": "ECUADOR",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 3,
-                    "Name": "SENEGAL",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 4,
-                    "Name": "PAÍSES BAJOS",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 1,
+            "Name": "QATAR",
+            "Flag": "url"
         },
         {
-            "Id": "B",
-            "Name": "GROUP B",
-            "Color": "blue",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 5,
-                    "Name": "INGLATERRA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 6,
-                    "Name": "IRÁN",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 7,
-                    "Name": "EEUU",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 8,
-                    "Name": "REPE EUROP",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 2,
+            "Name": "ECUADOR",
+            "Flag": "url"
         },
         {
-            "Id": "C",
-            "Name": "GROUP C",
-            "Color": "green",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 9,
-                    "Name": "ARGENTINA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 10,
-                    "Name": "ARABIA SAUDITA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 11,
-                    "Name": "MÉXICO",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 12,
-                    "Name": "POLONIA",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 3,
+            "Name": "SENEGAL",
+            "Flag": "url"
         },
         {
-            "Id": "D",
-            "Name": "GROUP D",
-            "Color": "dark",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 13,
-                    "Name": "FRANCIA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 14,
-                    "Name": "REPECH INTERN",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 15,
-                    "Name": "DINAMARCA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 16,
-                    "Name": "TÚNEZ",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 4,
+            "Name": "PAÍSES BAJOS",
+            "Flag": "url"
         },
         {
-            "Id": "E",
-            "Name": "GROUP E",
-            "Color": "with",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 17,
-                    "Name": "ESPAÑA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 18,
-                    "Name": "REPEC INTERN 2",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 19,
-                    "Name": "ALEMANIA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 20,
-                    "Name": "JAPÓN",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 5,
+            "Name": "INGLATERRA",
+            "Flag": "url"
         },
         {
-            "Id": "F",
-            "Name": "GROUP F",
-            "Color": "pink",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 21,
-                    "Name": "BÉLGICA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 22,
-                    "Name": "CANADÁ",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 23,
-                    "Name": "MARRUECOS",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 24,
-                    "Name": "CROACIA",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 6,
+            "Name": "IRÁN",
+            "Flag": "url"
         },
         {
-            "Id": "G",
-            "Name": "GROUP G",
-            "Color": "gold",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 25,
-                    "Name": "BRASIL",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 26,
-                    "Name": "SERBIA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 27,
-                    "Name": "SUIZA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 28,
-                    "Name": "CAMERÚN",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 7,
+            "Name": "EEUU",
+            "Flag": "url"
         },
         {
-            "Id": "H",
-            "Name": "GROUP H",
-            "Color": "silver",
-            "Winners": {
-                "First": null,
-                "Second": null
-            },
-            "Teams":
-            [
-                {
-                    "Id": 29,
-                    "Name": "PORTUGAL",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 30,
-                    "Name": "GHANA",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 31,
-                    "Name": "URUGUAY",
-                    "Flag": "url"
-                },
-                {
-                    "Id": 32,
-                    "Name": "COREA DEL SUR",
-                    "Flag": "url"
-                }
-            ]
+            "Id": 8,
+            "Name": "REPE EUROP",
+            "Flag": "url"
+        },
+        {
+            "Id": 9,
+            "Name": "ARGENTINA",
+            "Flag": "url"
+        },
+        {
+            "Id": 10,
+            "Name": "ARABIA SAUDITA",
+            "Flag": "url"
+        },
+        {
+            "Id": 11,
+            "Name": "MÉXICO",
+            "Flag": "url"
+        },
+        {
+            "Id": 12,
+            "Name": "POLONIA",
+            "Flag": "url"
+        },
+        {
+            "Id": 13,
+            "Name": "FRANCIA",
+            "Flag": "url"
+        },
+        {
+            "Id": 14,
+            "Name": "REPECH INTERN",
+            "Flag": "url"
+        },
+        {
+            "Id": 15,
+            "Name": "DINAMARCA",
+            "Flag": "url"
+        },
+        {
+            "Id": 16,
+            "Name": "TÚNEZ",
+            "Flag": "url"
+        },
+        {
+            "Id": 17,
+            "Name": "ESPAÑA",
+            "Flag": "url"
+        },
+        {
+            "Id": 18,
+            "Name": "REPEC INTERN 2",
+            "Flag": "url"
+        },
+        {
+            "Id": 19,
+            "Name": "ALEMANIA",
+            "Flag": "url"
+        },
+        {
+            "Id": 20,
+            "Name": "JAPÓN",
+            "Flag": "url"
+        },
+        {
+            "Id": 21,
+            "Name": "BÉLGICA",
+            "Flag": "url"
+        },
+        {
+            "Id": 22,
+            "Name": "CANADÁ",
+            "Flag": "url"
+        },
+        {
+            "Id": 23,
+            "Name": "MARRUECOS",
+            "Flag": "url"
+        },
+        {
+            "Id": 24,
+            "Name": "CROACIA",
+            "Flag": "url"
+        },
+        {
+            "Id": 25,
+            "Name": "BRASIL",
+            "Flag": "url"
+        },
+        {
+            "Id": 26,
+            "Name": "SERBIA",
+            "Flag": "url"
+        },
+        {
+            "Id": 27,
+            "Name": "SUIZA",
+            "Flag": "url"
+        },
+        {
+            "Id": 28,
+            "Name": "CAMERÚN",
+            "Flag": "url"
+        },
+        {
+            "Id": 29,
+            "Name": "PORTUGAL",
+            "Flag": "url"
+        },
+        {
+            "Id": 30,
+            "Name": "GHANA",
+            "Flag": "url"
+        },
+        {
+            "Id": 31,
+            "Name": "URUGUAY",
+            "Flag": "url"
+        },
+        {
+            "Id": 32,
+            "Name": "COREA DEL SUR",
+            "Flag": "url"
         }
     ]
 }

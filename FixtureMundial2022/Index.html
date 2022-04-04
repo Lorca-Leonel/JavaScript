@@ -191,18 +191,25 @@
 
     <script>
         var AllGroups = {};
+        var AllTeams = {};
 
         $(document).ready(function (){
-            LoadGroups();
+            LoadGroupsAndTeams();
             //ShowTeams();
         });
 
-        var LoadGroups = function() {
-            $.get('data/teams.json')
+        var LoadGroupsAndTeams = function() {
+            $.get('data/groups.json')
                 .done(function( data ) {
                     AllGroups = data;
                     ShowTeams();
                 });
+
+            $.get('data/teams.json')
+            .done(function( data ) {
+                AllTeams = data;
+                ShowTeams();
+            });
         }
 
         var ShowTeams = function() {
@@ -223,8 +230,45 @@
         }
 
         var SelectTeam = function(control, selectedGroup, selectedTeam) {
-            console.log(control.id);
-            console.log(selectedGroup, selectedTeam);
+            var group = AllGroups.Groups.find(t => t.Id == selectedGroup);
+            AddWinnerForGroup(control, group, selectedGroup, selectedTeam);
+        }
+
+        var AddWinnerForGroup = function(control, group, selectedGroup, selectedTeam) {
+            if ((group.Winners.First && group.Winners.First.Id == selectedTeam) || (group.Winners.Second && group.Winners.Second.Id == selectedTeam)) {
+                DeleteWinnerForGroup(control, group, selectedGroup, selectedTeam);
+                return;
+            }
+            
+            if (group.Winners.First == null) {
+                $("#" + control.id).addClass("bg-success");
+                group.Winners.First = AllTeams.Teams.find(t => t.Id == selectedTeam);
+                AllGroups.Groups[selectedGroup] = group;
+                return;
+            }
+
+            if (group.Winners.Second == null) {
+                $("#" + control.id).addClass("bg-warning");
+                group.Winners.Second = AllTeams.Teams.find(t => t.Id == selectedTeam);
+                AllGroups.Groups[selectedGroup] = group;
+                return;
+            }
+        }
+
+        var DeleteWinnerForGroup = function(control, group, selectedGroup, selectedTeam) {
+            if (group.Winners.First.Id == selectedTeam) {
+                $("#" + control.id).removeClass("bg-success");
+                group.Winners.First = null;
+                AllGroups.Groups[selectedGroup] = group;
+                return;
+            }
+
+            if (group.Winners.Second.Id == selectedTeam) {
+                $("#" + control.id).removeClass("bg-warning");
+                group.Winners.Second = null;
+                AllGroups.Groups[selectedGroup] = group;
+                return;
+            }
         }
 
     </script>
