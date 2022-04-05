@@ -102,12 +102,12 @@
           <label for="" class="col-sm-2 mt-2">Modo de Proceso: </label>
           <div class="col-sm-3">
             <select name="nVoltaje" class="custom-select" id="idSelectTipoProceso">
-              <option value="Todo">Procesar de una vez</option>
-              <option value="PasoAPaso">Paso a Paso</option>
+              <option value="todo">Procesar de una vez</option>
+              <option value="pasoAPaso">Paso a Paso</option>
             </select>
           </div>
           <div class="col-sm-1">
-            <button type="button" class="btn btn-primary" onclick="EscribirTexto();">
+            <button type="button" class="btn btn-primary" onclick="ObtenerCodificacionPasoAPaso();">
               <i class="fas fa-step-forward" aria-hidden="true" title="Procesar paso a paso"></i>
             </button>
           </div>
@@ -262,6 +262,11 @@
       let converte_primeiro_para_quarto = coordenada => [ponto_zero[0] + coordenada[0] * step_size[0], ponto_zero[1] +
         coordenada[1] * step_size[1] * -1
       ];
+
+      let pontosCartesianosNRZ = [];
+      let divisionesNRZ = [];
+      let punteroNRZ = -1;
+
     </script>
 
 </body>

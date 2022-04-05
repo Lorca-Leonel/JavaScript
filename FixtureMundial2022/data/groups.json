@@ -1,7 +1,5 @@
 {
-    "Groups": 
-    [
-        {
+    "Groups": [{
             "Id": "A",
             "Name": "GROUP A",
             "Color": "red",
@@ -9,9 +7,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 1,
                     "Name": "QATAR",
                     "Flag": "url"
@@ -41,9 +37,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 5,
                     "Name": "INGLATERRA",
                     "Flag": "url"
@@ -73,9 +67,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 9,
                     "Name": "ARGENTINA",
                     "Flag": "url"
@@ -105,9 +97,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 13,
                     "Name": "FRANCIA",
                     "Flag": "url"
@@ -137,9 +127,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 17,
                     "Name": "ESPAÑA",
                     "Flag": "url"
@@ -169,9 +157,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 21,
                     "Name": "BÉLGICA",
                     "Flag": "url"
@@ -201,9 +187,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 25,
                     "Name": "BRASIL",
                     "Flag": "url"
@@ -233,9 +217,7 @@
                 "First": null,
                 "Second": null
             },
-            "Teams":
-            [
-                {
+            "Teams": [{
                     "Id": 29,
                     "Name": "PORTUGAL",
                     "Flag": "url"
@@ -257,5 +239,98 @@
                 }
             ]
         }
-    ]
+    ],
+    "LeftEighth": {
+        "Block1": {
+            "WinnerBlock": null,
+            "Winner1A": null,
+            "Winner2B": null
+        },
+        "Block2": {
+            "WinnerBlock": null,
+            "Winner1C": null,
+            "Winner2D": null
+        },
+        "Block3": {
+            "WinnerBlock": null,
+            "Winner1B": null,
+            "Winner2A": null
+        },
+        "Block4": {
+            "WinnerBlock": null,
+            "Winner1D": null,
+            "Winner2C": null
+        }
+    },
+    "RightEighth": {
+        "Block5": {
+            "WinnerBlock": null,
+            "Winner1E": null,
+            "Winner2F": null
+        },
+        "Block6": {
+            "WinnerBlock": null,
+            "Winner1G": null,
+            "Winner2H": null
+        },
+        "Block7": {
+            "WinnerBlock": null,
+            "Winner1F": null,
+            "Winner2E": null
+        },
+        "Block8": {
+            "WinnerBlock": null,
+            "Winner1H": null,
+            "Winner2G": null
+        }
+    },
+    "RightFour": {
+        "Block9": {
+            "WinnerBlock": null,
+            "WinnerBlock1": null,
+            "WinnerBlock2": null
+        },
+        "Block10": {
+            "WinnerBlock": null,
+            "WinnerBlock5": null,
+            "WinnerBlock6": null
+        },
+        "Block11": {
+            "WinnerBlock": null,
+            "WinnerBlock3": null,
+            "WinnerBlock4": null
+        },
+        "Block12": {
+            "WinnerBlock": null,
+            "WinnerBlock7": null,
+            "WinnerBlock8": null
+        }
+    },
+    "SemiFinal": {
+        "Block13": {
+            "WinnerBlock": null,
+            "WinnerBlock9": null,
+            "WinnerBlock10": null
+        },
+        "Block14": {
+            "WinnerBlock": null,
+            "WinnerBlock11": null,
+            "WinnerBlock12": null
+        }
+    },
+    "Final": {
+        "Block15": {
+            "WinnerBlock": null,
+            "WinnerBlock13": null,
+            "WinnerBlock14": null
+        },
+        "Block16": {
+            "WinnerBlock": null,
+            "LoserBlock13": null,
+            "LoserBlock14": null
+        }
+    }
+
+
+
 }

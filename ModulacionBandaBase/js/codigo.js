@@ -272,7 +272,7 @@ function angle(cx, cy, ex, ey) {
 /******************/
 /******************/
 
-var ObtenerCodificacion = function (tipo) {
+var ObtenerCodificacion = function (tipoCodificacion) {
 
     var cadena = $("#idCadena").val();
     if (cadena == "") {
@@ -285,9 +285,33 @@ var ObtenerCodificacion = function (tipo) {
     try {
         //nonExistentFunction();
 
-        switch (tipo) {
+        switch (tipoCodificacion) {
             case 'UniPolarNRZ':
-                ObtenerUniPolarNRZ();
+                console.log(converte_primeiro_para_quarto);
+                var tipoProceso = $("#idSelectTipoProceso").val();
+                LimpiarCanvas();
+                pontosCartesianosNRZ = [];
+                divisionesNRZ = $("#idCadena").val().split("");
+                divisionesNRZ.forEach((point, index) => {
+                    if (point == 1) {
+                        pontosCartesianosNRZ.push([index * 2, 2, index]);
+                        pontosCartesianosNRZ.push([index * 2 + 2, 2, index]);
+                    } else {
+                        pontosCartesianosNRZ.push([index * 2, 0, index]);
+                        pontosCartesianosNRZ.push([index * 2 + 2, 0, index]);
+                    }
+                });
+                color = '#007bff';
+                console.log(pontosCartesianosNRZ);
+                if (tipoProceso == "todo") {
+                    pontosCartesianosNRZ.forEach((point, index) => {
+                        ObtenerUniPolarNRZ(index);
+                    });
+                }
+                else {
+                    PrepararPasoAPaso(tipoCodificacion);
+                }
+                
                 break;
             case 'PolarNRZ_L':
                 ObtenerPolarNRZ_L();
@@ -326,30 +350,37 @@ var ObtenerCodificacion = function (tipo) {
 
 };
 
-var ObtenerUniPolarNRZ = function () {
-    LimpiarCanvas();
-    pontosCartesianos = [];
-    var divisiones = $("#idCadena").val().split("");
+var ObtenerUniPolarNRZ = function (index) {
+        console.log(index);
+        var saltos = 0;
 
-    divisiones.forEach((point, index) => {
-
-        if (point == 1) {
-            pontosCartesianos.push([index * 2, 2]);
-            pontosCartesianos.push([index * 2 + 2, 2]);
-        } else {
-            pontosCartesianos.push([index * 2, 0]);
-            pontosCartesianos.push([index * 2 + 2, 0]);
-        }
-
-
-    });
-    color = '#007bff';
-    pontosCartesianos.forEach((point, index) => {
         linesCartesianas = [
             [index, index + 1]
         ];
-        drawnLines(pontosCartesianos, linesCartesianas, color);
-    });
+        //console.log(pontosCartesianosNRZ[i][2]);
+        
+        for (let i = index; i < pontosCartesianosNRZ.length; i++) {
+            var dato1 = pontosCartesianosNRZ[i][2];
+            try {
+                var dato2 = pontosCartesianosNRZ[i + 1][2];
+            } catch (error) {
+                var dato2 = -1;
+            }
+            
+            console.log(dato1, dato2);
+            if (dato1 == dato2) {
+                linesCartesianas.push(i+1, i+2);
+            }
+            else {
+                i = pontosCartesianosNRZ.length + 1;
+            }
+        }
+        index = index +1;
+        console.log(linesCartesianas)
+
+        console.log(pontosCartesianosNRZ[index][2]);
+
+        drawnLines(pontosCartesianosNRZ, linesCartesianas, 'red');
     //context.fillText("R", 536, 276); // 536,276
 };
 
@@ -691,4 +722,48 @@ var LanzarToast = function () {
     $('.toast').toast('show')
 }
 
+var PrepararPasoAPaso = function (tipo) {
+    tipoPasoAPaso = tipo;
+    indiceArrayDivisiones = 0;
+    pulsoActual = 3.14;
+    $('#idRowResultados').html("");
+  }
+
+  var ObtenerCodificacionPasoAPaso = function () {
+
+    switch (tipoPasoAPaso) {
+      case 'UniPolarNRZ':
+        punteroNRZ = punteroNRZ + 1;
+        ObtenerUniPolarNRZ(punteroNRZ);
+        break;
+  
+      case '2ASK':
+        Obtener2ASK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      case 'FSK':
+        ObtenerFSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      case 'PSK':
+        ObtenerPSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      case '4PSK':
+        Obtener4PSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      case 'QPSK':
+        ObtenerQPSK(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      case '8QAM':
+        Obtener8QAM(divisiones[indiceArrayDivisiones], indiceArrayDivisiones);
+        break;
+  
+      default:
+        console.log('Seleccion no valida');
+    }
+    indiceArrayDivisiones = indiceArrayDivisiones + 1;
+  }
 //ObtenerPseudoTernaria
