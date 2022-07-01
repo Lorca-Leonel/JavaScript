@@ -2,7 +2,7 @@
   "name": "qrcode-scanner",
   "version": "1.0.0",
   "description": "",
-  "main": "instascan.min.js",
+  "main": "index.js",
   "scripts": {
     "start": "live-server"
   },
