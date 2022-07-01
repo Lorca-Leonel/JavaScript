@@ -1,1 +1,8 @@
-.DS_Store
+node_modules
+zxing-cpp
+ZXingCore
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+MakeFile
