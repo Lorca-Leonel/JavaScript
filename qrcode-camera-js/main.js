@@ -91,11 +91,11 @@ const parseResult = _text => {
 
   } else if (data.length == 15 || data.lenght == 16 || data.lenght == 17 ) {
     // Formato anterior
-    apellido = data[4].trim()
-    nombre   = data[5].trim()
-    sexo     = data[8].trim()
-    dni      = data[1].trim()
-    fechaNac = data[7].trim()
+    apellido = data[5].trim()
+    nombre   = data[6].trim()
+    sexo     = data[9].trim()
+    dni      = data[2].trim()
+    fechaNac = data[8].trim()
   } else {
     // Formato NO identificado
     resultP.classList.add('error');
