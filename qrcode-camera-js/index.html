@@ -6,34 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>javascript scan qrcode</title>
-    <!-- <link rel="stylesheet" href="./assets/bootstrap.min.css"> -->
-    <script src="./assets/instascan-v2.min.js"></script>
-    <!-- <script src="./assets/instascan.min.js"></script> -->
-    <!-- <script src="./assets/vue.min.js"></script> -->
+
 </head>
 
 <body>
-    <video id="preview"></video>
-
-    <div id="contenido">
-
+    <div class="content-wrap">
+        <div id="result">
+          <strong>Nombre: </strong> %nombre% <br>
+          <strong>Apellido: </strong> %apellido% <br>
+          <strong>DNI: </strong> %dni% <br>
+          <strong>Sexo: </strong> %sexo% <br>
+          <strong>Fecha Nac: </strong> %fechaNac% <br>
+          <textarea>%raw%</textarea>
+        </div>
     </div>
+    <button id="iniciar">Iniciar</button>
+    <div class="video-wrap" id="video-wrap">
+      <video playsinline autoplay id="dniVideo"></video>
+    </div>
+    <p>El código debe estar bien enfocado y horizontal, lo más paralelo a la imagen como sea posible. Acerque el código a la cámara y aléjelo lentamente hasta que haga foco.</p>
+  </div>
 
-    <script>
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
-
-        scanner.addListener('scan', content => {
-            console.log(content);
-            document.getElementById("contenido").innerHTML = content;
-            //$("#contenido").html(content);
-        });
-
-        Instascan.Camera.getCameras().then(cameras => {
-            if (cameras.length <= 0) return;
-            scanner.camera = cameras[1];
-            scanner.start();
-        }).catch(e => console.error(e));
-    </script>
+  <script src="zxing.js"></script>
+  <script src="main.js"></script>
 </body>
-
 </html>
