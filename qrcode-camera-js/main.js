@@ -89,7 +89,7 @@ const parseResult = _text => {
     dni      = data[4].trim()
     fechaNac = data[6].trim()
 
-  } else if (data.length == 15) {
+  } else if (data.length == 15 || data.lenght == 16 ) {
     // Formato anterior
     apellido = data[4].trim()
     nombre   = data[5].trim()
@@ -121,7 +121,7 @@ const parseResult = _text => {
     result = result.replace('%apellido%', apellido);
     result = result.replace('%sexo%', sexo);
     result = result.replace('%dni%', dni);
-    result = result.replace('%fechaNac%', fechaNac);
+    dresult = result.replace('%fechaNac%', fechaNac);
     resultP.innerHTML = result;
     resultP.classList.add('success');
     if( navigator.vibrate ) {
