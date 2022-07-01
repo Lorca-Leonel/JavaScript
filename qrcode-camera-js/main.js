@@ -116,18 +116,12 @@ const parseResult = _text => {
       validarTexto(sexo) && 
       validarTexto(apellido) && 
       validarTexto(nombre) ) {
-    result = $("#idNombre").val(nombre);
-    result = $("#idApellido").val(apellido);
-    result = $("#idSexo").val(sexo);
-    result = $("#idDNI").val(dni);
-    result = $("#idFechaNacim").val(fechaNac);
-    result = $("#idTextA").val(raw);
-    //result = result.replace('%raw%', raw);
-    //result = result.replace('%nombre%', nombre);
-    //result = result.replace('%apellido%', apellido);
-    //result = result.replace('%sexo%', sexo);
-    //result = result.replace('%dni%', dni);
-    //result = result.replace('%fechaNac%', fechaNac);
+    result = result.replace('%raw%', raw);
+    result = result.replace('%nombre%', nombre);
+    result = result.replace('%apellido%', apellido);
+    result = result.replace('%sexo%', sexo);
+    result = result.replace('%dni%', dni);
+    result = result.replace('%fechaNac%', fechaNac);
     resultP.innerHTML = result;
     resultP.classList.add('success');
     if( navigator.vibrate ) {
