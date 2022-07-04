@@ -132,6 +132,8 @@ const parseResult = _text => {
       resultP.classList.remove("success");
     }, 1000);
   } else {
+    result = result.replace('%raw%', raw);
+    resultP.innerHTML = result;
     resultP.classList.add('error');
     setTimeout(_ => {
       resultP.classList.remove("error");
