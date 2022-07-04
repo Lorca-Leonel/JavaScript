@@ -89,7 +89,7 @@ const parseResult = _text => {
     dni      = data[4].trim()
     fechaNac = data[6].trim()
 
-  } else if (data.length == 15) {
+  } else if (data.length >= 10 && data.length <= 20 ) {
     // Formato anterior
     apellido = data[4].trim()
     nombre   = data[5].trim()
