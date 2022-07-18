@@ -173,17 +173,18 @@ const startWebcam = async (constraints1) => {
     };
     
     return navigator.mediaDevices.getUserMedia(updatedConstraints);
-  }
-  .then(stream => {
-    if (video.mozSrcObject !== undefined) {
+    handleStream(stream);
+  };
+
+const handleStream = (stream) => {
+  if (video.mozSrcObject !== undefined) {
       video.mozSrcObject = stream;
     } else if (video.srcObject !== undefined) {
       video.srcObject = stream;
     } else {
       video.src = stream;
-    }})
-  .catch(e => console.error(e));
-}
+    }
+};
 
 const getCameraSelection = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices();
