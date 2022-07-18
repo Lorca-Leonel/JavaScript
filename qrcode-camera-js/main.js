@@ -158,7 +158,7 @@ const getDefaultVideoDevice = devices => {
   }
 }
 
-const startWebcam = (constraints1) => { 
+const startWebcam = async (constraints1) => { 
   //----------------------------------------------------------------------
   //  Here we list all media devices, in order to choose between
   //  the front and the back camera.
@@ -245,4 +245,7 @@ cameraOptions.onchange = () => {
   startWebcam(updatedConstraints);
 };
 
-getCameraSelection();
+document.addEventListener("DOMContentLoaded", function(event) {
+    getCameraSelection();
+});
+
