@@ -1,4 +1,3 @@
-feather.replace();
 
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
