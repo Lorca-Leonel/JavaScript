@@ -11,6 +11,7 @@ let loopFrame;
 let loopSkipedFrame = 0;
 let source, binarizer, bitmap, result;
 let ultimoDni = '';
+const cameraOptions = document.querySelector('.video-options>select');
 
 // Crear canvas para el video
 const canvas = document.createElement('canvas'),
@@ -155,7 +156,7 @@ const getDefaultVideoDevice = devices => {
   }
 }
 
-const startWebcam = () => { 
+const startWebcam = (constraints1) => { 
   //----------------------------------------------------------------------
   //  Here we list all media devices, in order to choose between
   //  the front and the back camera.
@@ -173,7 +174,7 @@ const startWebcam = () => {
       }
     });
 
-    let _videoDevice = getDefaultVideoDevice(videoDevices);
+    let _videoDevice = await navigator.mediaDevices.getUserMedia(constraints1);
 
     let constraints =  {
       width: { min: 320, ideal: 640, max: 1024 },
@@ -193,6 +194,15 @@ const startWebcam = () => {
     }})
   .catch(e => console.error(e));
 }
+
+const getCameraSelection = async () => {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter(device => device.kind === 'videoinput');
+  const options = videoDevices.map(videoDevice => {
+    return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
+  });
+  cameraOptions.innerHTML = options.join('');
+};
 
 const mainLoop = () => {
   // Clear the canvas
@@ -216,6 +226,16 @@ video.addEventListener('loadedmetadata',function(){
 
 // Inicializar
 iniciar.addEventListener('click', function(){
-  startWebcam();
-  iniciar.remove();
+  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
+    const updatedConstraints = {
+      ...constraints,
+      deviceId: {
+        exact: cameraOptions.value
+      }
+    };
+    startWebcam(updatedConstraints);
+    iniciar.remove();
+  }
 });
+
+getCameraSelection();
