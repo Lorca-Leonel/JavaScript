@@ -163,13 +163,7 @@ const startWebcam = async (constraints1) => {
   };
 
 const handleStream = (stream) => {
-  if (video.mozSrcObject !== undefined) {
-      video.mozSrcObject = stream;
-    } else if (video.srcObject !== undefined) {
-      video.srcObject = stream;
-    } else {
-      video.src = stream;
-    }
+  video.srcObject = stream;
 };
 
 const getCameraSelection = async () => {
