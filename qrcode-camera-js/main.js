@@ -162,27 +162,15 @@ const startWebcam = (constraints1) => {
   //  the front and the back camera.
   //      videoDevices[0] : Front Camera android / back camera ios
   //      videoDevices[1] : Back Camera android / front camera ios
-  //----------------------------------------------------------------------
-  navigator.mediaDevices.enumerateDevices()
-  .then(devices => {
-    let videoDevices = [0,0];
-    let videoDeviceIndex = 0;
-    devices.forEach(function(device) {
-      // console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
-      if (device.kind == "videoinput") {  
-        videoDevices[videoDeviceIndex++] =  device.deviceId;    
-      }
-    });
-
+  //---------------------------------------------------------------------
     let _videoDevice = await navigator.mediaDevices.getUserMedia(constraints1);
 
-    let constraints =  {
-      width: { min: 320, ideal: 640, max: 1024 },
-      height: { min: 240, ideal: 480, max: 768 },
-      deviceId: { exact: _videoDevice  } 
+    const updatedConstraints = {
+      ...constraints,
+      deviceId: { exact: _videoDevice  }
     };
     
-    return navigator.mediaDevices.getUserMedia({ video: constraints });
+    return navigator.mediaDevices.getUserMedia(updatedConstraints);
   })
   .then(stream => {
     if (video.mozSrcObject !== undefined) {
@@ -237,5 +225,22 @@ iniciar.addEventListener('click', function(){
     iniciar.remove();
   }
 });
+
+let constraints =  {
+  video: {
+      width: { min: 320, ideal: 640, max: 1024 },
+      height: { min: 240, ideal: 480, max: 768 },
+  }
+};
+  
+cameraOptions.onchange = () => {
+  const updatedConstraints = {
+    ...constraints,
+    deviceId: {
+      exact: cameraOptions.value
+    }
+  };
+  startWebcam(updatedConstraints);
+};
 
 getCameraSelection();
