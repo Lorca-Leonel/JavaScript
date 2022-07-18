@@ -245,7 +245,6 @@ cameraOptions.onchange = () => {
   startWebcam(updatedConstraints);
 };
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    getCameraSelection();
-});
+getCameraSelection();
+
 
