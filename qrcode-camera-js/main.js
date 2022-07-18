@@ -173,7 +173,7 @@ const startWebcam = async (constraints1) => {
     };
     
     return navigator.mediaDevices.getUserMedia(updatedConstraints);
-  })
+  }
   .then(stream => {
     if (video.mozSrcObject !== undefined) {
       video.mozSrcObject = stream;
