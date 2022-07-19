@@ -158,7 +158,7 @@ const startWebcam = async (constraints1) => {
       deviceId: { exact: _videoDevice  }
     };
     
-    const stream = await navigator.mediaDevices.getUserMedia(constraints1);
+    let stream = await navigator.mediaDevices.getUserMedia(constraints1);
     handleStream(stream);
   };
 
