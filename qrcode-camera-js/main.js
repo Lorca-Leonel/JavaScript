@@ -150,15 +150,8 @@ const startWebcam = async (constraints1) => {
   //  the front and the back camera.
   //      videoDevices[0] : Front Camera android / back camera ios
   //      videoDevices[1] : Back Camera android / front camera ios
-  //---------------------------------------------------------------------
-    let _videoDevice = await navigator.mediaDevices.getUserMedia(constraints1);
-
-    const updatedConstraints = {
-      ...constraints,
-      deviceId: { exact: _videoDevice  }
-    };
-    
-    let stream = await navigator.mediaDevices.getUserMedia(constraints1);
+  //---------------------------------------------------------------------   
+    let stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
     handleStream(stream);
   };
 
@@ -168,7 +161,7 @@ const handleStream = (stream) => {
 
 const getCameraSelection = async () => {
   const devices = await navigator.mediaDevices.enumerateDevices();
-  const videoDevices = devices.filter(device => device.kind === 'videoinput');
+  const videoDevices = devices.filter(device => device.kind == "videoinput");
   const options = videoDevices.map(videoDevice => {
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
@@ -200,18 +193,14 @@ iniciar.addEventListener('click', function(){
   video.pause();
     const updatedConstraints = {
       ...constraints,
-      deviceId: {
-        exact: cameraOptions.value
-    }
+      deviceId: { exact: cameraOptions.value }
     };
     startWebcam(updatedConstraints);
 });
 
 let constraints =  {
-  video: {
       width: { min: 320, ideal: 640, max: 1024 },
       height: { min: 240, ideal: 480, max: 768 },
-  }
 }; 
 
 getCameraSelection();
