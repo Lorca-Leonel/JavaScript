@@ -193,7 +193,7 @@ iniciar.addEventListener('click', function(){
   video.pause();
     const updatedConstraints = {
       ...constraints,
-      deviceId: { exact: cameraOptions.val() }
+      deviceId: { exact: cameraOptions.value }
     };
     startWebcam(updatedConstraints);
 });
