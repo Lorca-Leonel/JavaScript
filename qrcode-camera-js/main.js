@@ -198,15 +198,13 @@ video.addEventListener('loadedmetadata',function(){
 // Inicializar
 iniciar.addEventListener('click', function(){
   video.pause();
-  if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
     const updatedConstraints = {
       ...constraints,
       deviceId: {
         exact: cameraOptions.value
-      }
+    }
     };
     startWebcam(updatedConstraints);
-  }
 });
 
 let constraints =  {
