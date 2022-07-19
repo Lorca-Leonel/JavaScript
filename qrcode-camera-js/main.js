@@ -12,7 +12,7 @@ let loopFrame;
 let loopSkipedFrame = 0;
 let source, binarizer, bitmap, result;
 let ultimoDni = '';
-const cameraOptions = $("#Select");//document.querySelector('.video-options>select');
+const cameraOptions = document.querySelector('.video-options>select');
 
 // Crear canvas para el video
 const canvas = document.createElement('canvas'),
