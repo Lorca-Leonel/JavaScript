@@ -197,6 +197,7 @@ video.addEventListener('loadedmetadata',function(){
 
 // Inicializar
 iniciar.addEventListener('click', function(){
+  video.pause();
   if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
     const updatedConstraints = {
       ...constraints,
@@ -213,17 +214,7 @@ let constraints =  {
       width: { min: 320, ideal: 640, max: 1024 },
       height: { min: 240, ideal: 480, max: 768 },
   }
-};
-  
-cameraOptions.onchange = () => {
-  const updatedConstraints = {
-    ...constraints,
-    deviceId: {
-      exact: cameraOptions.value
-    }
-  };
-  startWebcam(updatedConstraints);
-};
+}; 
 
 getCameraSelection();
 
