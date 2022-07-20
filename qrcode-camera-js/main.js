@@ -151,6 +151,11 @@ const startWebcam = async (constraints1) => {
   //      videoDevices[0] : Front Camera android / back camera ios
   //      videoDevices[1] : Back Camera android / front camera ios
   //---------------------------------------------------------------------   
+    if (stream) {
+	    stream.getTracks().forEach(function (track) {
+	    track.stop();
+	    });
+    }
     var stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
     handleStream(stream);
   };
@@ -190,8 +195,7 @@ video.addEventListener('loadedmetadata',function(){
 
 // Inicializar
 iniciar.addEventListener('click', function(){
-  video.pause();
-  
+  video.pause();  
   const updatedConstraints = {
     ...constraints,
     deviceId: { exact: cameraOptions.value }
