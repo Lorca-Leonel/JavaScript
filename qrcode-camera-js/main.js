@@ -151,7 +151,7 @@ const startWebcam = async (constraints1) => {
   //      videoDevices[0] : Front Camera android / back camera ios
   //      videoDevices[1] : Back Camera android / front camera ios
   //---------------------------------------------------------------------   
-    let stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
+    var stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
     handleStream(stream);
   };
 
