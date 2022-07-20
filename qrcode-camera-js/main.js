@@ -191,11 +191,7 @@ video.addEventListener('loadedmetadata',function(){
 // Inicializar
 iniciar.addEventListener('click', function(){
   video.pause();
-  if (stream) {
-	stream.getTracks().forEach(function (track) {
-	track.stop();
-	});
-  }
+  
   const updatedConstraints = {
     ...constraints,
     deviceId: { exact: cameraOptions.value }
