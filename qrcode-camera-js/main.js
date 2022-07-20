@@ -13,6 +13,7 @@ let loopSkipedFrame = 0;
 let source, binarizer, bitmap, result;
 let ultimoDni = '';
 const cameraOptions = document.querySelector('.video-options>select');
+let stream;
 
 // Crear canvas para el video
 const canvas = document.createElement('canvas'),
@@ -156,7 +157,7 @@ const startWebcam = async (constraints1) => {
 	    track.stop();
 	    });
     }
-    var stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
+    stream = await navigator.mediaDevices.getUserMedia({ video: constraints1 });
     handleStream(stream);
   };
 
