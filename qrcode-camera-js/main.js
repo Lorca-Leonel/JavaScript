@@ -192,15 +192,15 @@ video.addEventListener('loadedmetadata',function(){
 iniciar.addEventListener('click', function(){
   video.pause();
   if (stream) {
-						stream.getTracks().forEach(function (track) {
-							track.stop();
-						});
-	}
-    const updatedConstraints = {
-      ...constraints,
-      deviceId: { exact: cameraOptions.value }
-    };
-    startWebcam(updatedConstraints);
+	stream.getTracks().forEach(function (track) {
+	track.stop();
+	});
+  }
+  const updatedConstraints = {
+    ...constraints,
+    deviceId: { exact: cameraOptions.value }
+  };
+  startWebcam(updatedConstraints);
 });
 
 let constraints =  {
