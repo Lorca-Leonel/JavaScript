@@ -1,5 +1,7 @@
-navigator.mediaDevices.getUserMedia(constraints).then(getCameraSelection(){
+navigator.mediaDevices.getUserMedia().then({
 
+getCameraSelection();
+	
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
