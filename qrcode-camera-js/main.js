@@ -1,3 +1,4 @@
+navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
 
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
@@ -205,11 +206,15 @@ iniciar.addEventListener('click', function(){
 });
 
 let constraints =  {
-      width: { min: 320, ideal: 640, max: 1024 },
-      height: { min: 240, ideal: 480, max: 768 },
+	audio: false,
+	video:
+	{
+		width: { min: 320, ideal: 640, max: 1024 },
+		height: { min: 240, ideal: 480, max: 768 },
+	}
 }; 
 
-navigator.mediaDevices.getUserMedia({video: true})
 getCameraSelection();
 
+})
 
