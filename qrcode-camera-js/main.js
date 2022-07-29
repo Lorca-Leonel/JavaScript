@@ -209,6 +209,7 @@ let constraints =  {
       height: { min: 240, ideal: 480, max: 768 },
 }; 
 
+navigator.mediaDevices.getUserMedia({video: true})
 getCameraSelection();
 
 
