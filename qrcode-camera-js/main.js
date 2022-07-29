@@ -1,5 +1,4 @@
-navigator.mediaDevices.getUserMedia({video: true}).then({
-
+navigator.mediaDevices.getUserMedia({video: true})
 getCameraSelection()
 	
 // Crossbrowser getUserMedia
@@ -215,6 +214,4 @@ let constraints =  {
 		height: { min: 240, ideal: 480, max: 768 },
 	}
 }; 
-
-})
 
