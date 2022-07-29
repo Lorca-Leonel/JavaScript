@@ -1,5 +1,5 @@
 navigator.mediaDevices.getUserMedia({video: true})
-getCameraSelection()
+getCameraSelection();
 	
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
