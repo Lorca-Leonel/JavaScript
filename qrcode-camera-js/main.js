@@ -1,4 +1,4 @@
-navigator.mediaDevices.getUserMedia().then({
+navigator.mediaDevices.getUserMedia({video: true}).then({
 
 getCameraSelection();
 	
