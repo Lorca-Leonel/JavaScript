@@ -1,4 +1,3 @@
-navigator.mediaDevices.getUserMedia({video: true})
 	
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
