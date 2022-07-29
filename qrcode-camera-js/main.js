@@ -1,4 +1,4 @@
-navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
+navigator.mediaDevices.getUserMedia(constraints).then({
 
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
