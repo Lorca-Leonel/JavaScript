@@ -1,4 +1,5 @@
-	
+const ZXing = require('./zxing')();
+
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
