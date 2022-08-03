@@ -1,4 +1,4 @@
-const ZXing = require('./zxing')();
+const Module = require('./zxing')();
 
 // Crossbrowser getUserMedia
 navigator.getUserMedia  = navigator.getUserMedia ||
